@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录界面</title>
+    <link rel="stylesheet" href="layui/css/layui.css"/>
+    <link rel="stylesheet" href="css/login.css"/>
+    <script src="angular/angular.min.js"></script>
+    <script src="layui/layui.js"></script>
+    <script src="js/login.js"></script>
+</head>
+<body>
+<blockquote class="layui-elem-quote">后台管理系统</blockquote>
+<div class="layui-row">
+
+    <div align="center" class="login_bg">
+        <div class="login_lg" ng-app="loginApp" ng-controller="loginController">
+            <br/>
+            <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+                <legend>登录</legend>
+            </fieldset>
+            <form class="layui-form">
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">用户名</label>
+                    <div class="layui-input-inline" style="width: 250px;">
+                        <input type="text" name="username" ng-model="user.username" lay-verify="required" placeholder="请输入用户名"
+                               autocomplete="off"
+                               class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">密码</label>
+                    <div class="layui-input-inline" style="width: 250px;">
+                        <input type="password" name="password" ng-model="user.password" lay-verify="required" placeholder="请输入密码"
+                               autocomplete="off"
+                               class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">验证码</label>
+                        <div class="layui-input-inline" style="width: 130px;" ng-init="getImage()">
+                            <input type="text" name="imageCode" ng-model="user.imageCode" lay-verify="required" placeholder="请输入验证码"
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-form-mid"></div>
+                        <div class="layui-input-inline" style="width: 100px;">
+                            <img ng-src="{{verifyCode}}" ng-click="changeCode()"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <button type="submit" class="layui-btn" lay-submit lay-filter="formDemo" >立即登录</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+<div class="layui-row">
+    <div class="layui-col-sm12" align="center">© 2019 - 后台管理系统 || silence版权所有</div>
+</div>
+</body>
+</html>
