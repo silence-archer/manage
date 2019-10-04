@@ -1,16 +1,18 @@
 var app = angular.module('myApp', ['ngRoute']);
-app .constant('myUrl', 'http://127.0.0.1:8080/');
+app .constant('myUrl', 'http://127.0.0.1:8081/');
 app.config(function ($httpProvider,$routeProvider){
     $httpProvider.defaults.withCredentials = true;
-    $routeProvider.when('/',{
+    $routeProvider.when('/message',{
         templateUrl: 'message/message.html',
         controller: 'messageController'
+    }).when('/',{
+        templateUrl: 'welcome/welcome.html',
+        controller: 'welcomeController'
     }).otherwise({
         redirectTo: '/'
     });
 });
 app.controller('parentController',function ($scope, $http, $route,myUrl) {
-    $scope.$route = $route;
     $scope.getUser = function () {
         $scope.user = {};
         $http.get(myUrl+"getUser").then(function successCallback(response) {
@@ -40,6 +42,9 @@ app.controller('messageController',function ($scope, $http, $route,myUrl) {
 
 
     });
+});
+app.controller('welcomeController',function ($scope, $http) {
+
 });
 layui.use(['layer', 'form','element'], function(){
     var layer = layui.layer

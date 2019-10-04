@@ -4,7 +4,7 @@ app.controller('loginController', function ($scope, $http) {
         withCredentials: true
     };
     var verify = function(){
-        $http.get("http:/127.0.0.1:8080/verifyCode",config).then(function successCallback(response) {
+        $http.get("http://127.0.0.1:8081/verifyCode",config).then(function successCallback(response) {
             console.log(response);
             $scope.verifyCode = response.data.imageCode;
 
@@ -23,7 +23,7 @@ app.controller('loginController', function ($scope, $http) {
 
     var login = function () {
         console.log($scope.user);
-        $http.post("http:/127.0.0.1:8080/login",$scope.user,config).then(function successCallback(response) {
+        $http.post("http://127.0.0.1:8081/login",$scope.user,config).then(function successCallback(response) {
             console.log(response);
             if(response.data.code != 000000){
                 layer.msg(response.data.message);
