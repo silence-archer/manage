@@ -1,33 +1,33 @@
 <table class="layui-hide" id="test" lay-filter="test"></table>
-<div class="layui-row" id="dialog" style="display: none;">
+<div class="layui-row" id="dialog" style="display:none;">
     <br/>
-        <form class="layui-form">
+    <form class="layui-form" lay-filter="example">
 
-            <div class="layui-form-item">
-                <label class="layui-form-label">用户名</label>
-                <div class="layui-input-inline" style="width: 250px;">
-                    <input type="text" name="username" ng-model="user.username" lay-verify="required"
-                           placeholder="请输入用户名"
-                           autocomplete="off"
-                           class="layui-input">
-                </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">用户名</label>
+            <div class="layui-input-inline" style="width: 250px;">
+                <input type="text" name="username" id="username" lay-verify="required"
+                       placeholder="请输入用户名"
+                       autocomplete="off"
+                       class="layui-input">
             </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">昵称</label>
-                <div class="layui-input-inline" style="width: 250px;">
-                    <input type="text" name="username" ng-model="user.nickname" lay-verify="required"
-                           placeholder="请输入昵称"
-                           autocomplete="off"
-                           class="layui-input">
-                </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">昵称</label>
+            <div class="layui-input-inline" style="width: 250px;">
+                <input type="text" name="nickname" id="nickname" lay-verify="required"
+                       placeholder="请输入昵称"
+                       autocomplete="off"
+                       class="layui-input">
             </div>
+        </div>
 
-            <div class="layui-form-item">
-                <div class="layui-input-block">
-                <button type="submit" class="layui-btn" lay-submit lay-filter="formDemo">提交</button>
-                </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button type="submit" class="layui-btn" lay-submit lay-filter="formUser" >提交</button>
             </div>
-        </form>
+        </div>
+    </form>
 </div>
 
 <script type="text/html" id="barDemo">
@@ -35,3 +35,5 @@
     <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
+
+

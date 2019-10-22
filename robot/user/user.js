@@ -1,4 +1,27 @@
-app.controller('userController',function ($scope, $http) {
+app.controller('userController',function ($scope, $http, myUrl) {
+
+    var userOperate = function (url,data) {
+        $http.post(myUrl+url,data).then(function successCallback(response) {
+            if(response.data.code === '000000'){
+                layer.closeAll('loading');
+                layer.load(2);
+                layer.msg("操作成功", {icon: 6});
+                setTimeout(function () {
+                        location.reload();//刷新页面
+                        /* layer.closeAll();//关闭所有的弹出层*/
+                    },
+                    1000
+                );
+                //加载层-风格
+            }else{
+                layer.msg(response.data.message, {icon: 5});
+            }
+
+        }, function errorCallback(response) {
+            console.log(response);
+        });
+    };
+
     layui.use(['layer', 'form','table'], function(){
         var table = layui.table,
             form = layui.form,
@@ -15,6 +38,7 @@ app.controller('userController',function ($scope, $http) {
                 ,{field:'id', title:'ID', width:200, fixed: 'left', unresize: true, sort: true}
                 ,{field:'username', title:'用户名', width:200}
                 ,{field:'nickname', title:'昵称', width:300}
+                ,{field:'createTime', title:'创建时间', width:300}
                 ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:200}
             ]]
             ,page: true
@@ -29,13 +53,15 @@ app.controller('userController',function ($scope, $http) {
                     layer.open({
                         type: 1
                         ,title: '添加数据'
-                        ,content: $("#dialog").html()
-                        ,area:["30%",'300px']
-                        ,btn:['提交']
-                        ,yes: function(index, layero){
-                            console.log(layero);
-                            layer.close(index);
-                        }
+                        ,area:['30%','300px']
+                        ,content: $("#dialog").html()//引用的弹出层的页面层的方式加载修改界面表单
+                    });
+                    //动态向表传递赋值可以参看文章进行修改界面的更新前数据的显示，当然也是异步请求的要数据的修改数据的获取
+                    form.on('submit(formUser)', function (data) {
+
+                        userOperate("addUser",data.field);
+
+                        return false;//false：阻止表单跳转 true：表单跳转
                     });
                     break;
                 case 'update':
@@ -44,8 +70,27 @@ app.controller('userController',function ($scope, $http) {
                     } else if(data.length > 1){
                         layer.msg('只能同时编辑一个');
                     } else {
-                        layer.alert('编辑 [id]：'+ checkStatus.data[0].id);
+
+                        layer.open({
+                            type: 1
+                            ,title: '修改数据'
+                            ,area:['30%','300px']
+                            ,content: $('#dialog').html()//引用的弹出层的页面层的方式加载修改界面表单
+                            ,success: function(layero, index){
+                                form.val('example',{
+                                    'username': data[0].username,
+                                    'nickname': data[0].nickname
+                                });
+                            }
+                        });
                     }
+                    form.on('submit(formUser)', function (info) {
+                        data[0].username = info.field.username;
+                        data[0].nickname = info.field.nickname;
+                        userOperate("updateUser",data[0]);
+
+                        return false;//false：阻止表单跳转 true：表单跳转
+                    });
                     break;
                 case 'delete':
                     if(data.length === 0){
@@ -79,12 +124,7 @@ app.controller('userController',function ($scope, $http) {
             }
         });
 
-        //监听提交
-        form.on('submit(formDemo)', function(data){
 
-            return false;
-
-        });
 
     });
 });
