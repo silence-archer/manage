@@ -1,26 +1,4 @@
-app.controller('userController',function ($scope, $http, myUrl) {
-
-    var userOperate = function (url,data) {
-        $http.post(myUrl+url,data).then(function successCallback(response) {
-            if(response.data.code === '000000'){
-                layer.closeAll('loading');
-                layer.load(2);
-                layer.msg("操作成功", {icon: 6});
-                setTimeout(function () {
-                        location.reload();//刷新页面
-                        /* layer.closeAll();//关闭所有的弹出层*/
-                    },
-                    1000
-                );
-                //加载层-风格
-            }else{
-                layer.msg(response.data.message, {icon: 5});
-            }
-
-        }, function errorCallback(response) {
-            console.log(response);
-        });
-    };
+app.controller('userController',function ($scope, $http, myUrl,dialogService) {
 
     layui.use(['layer', 'form','table'], function(){
         var table = layui.table,
@@ -58,8 +36,7 @@ app.controller('userController',function ($scope, $http, myUrl) {
                     });
                     //动态向表传递赋值可以参看文章进行修改界面的更新前数据的显示，当然也是异步请求的要数据的修改数据的获取
                     form.on('submit(formUser)', function (data) {
-
-                        userOperate("addUser",data.field);
+                        dialogService.dialogHttp("addUser",data.field);
 
                         return false;//false：阻止表单跳转 true：表单跳转
                     });
@@ -87,7 +64,7 @@ app.controller('userController',function ($scope, $http, myUrl) {
                     form.on('submit(formUser)', function (info) {
                         data[0].username = info.field.username;
                         data[0].nickname = info.field.nickname;
-                        userOperate("updateUser",data[0]);
+                        dialogService.dialogHttp("updateUser",data[0]);
 
                         return false;//false：阻止表单跳转 true：表单跳转
                     });

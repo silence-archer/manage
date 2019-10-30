@@ -6,10 +6,12 @@
     <link rel="stylesheet" href="layui/css/layui.css"/>
     <script src="angular/angular.js"></script>
     <script src="angular/angular-route.min.js"></script>
+    <script src="angular/angular-sanitize.js"></script>
     <script src="layui/layui.js"></script>
     <script src="js/index.js"></script>
     <script src="js/main-service.js"></script>
     <script src="js/main-route.js"></script>
+    <script src="js/main-filter.js"></script>
     <script src="js/commonservice.js"></script>
 </head>
 <body class="layui-layout-body">
@@ -52,7 +54,7 @@
                 <li class="layui-nav-item layui-nav-itemed" ng-repeat="menu in menus">
                     <a href="javascript:;">{{menu.name}}</a>
                     <dl class="layui-nav-child" ng-repeat="data in menu.list">
-                        <dd><a href="javascript:;">{{data.name}}</a></dd>
+                        <dd><a href="{{'#!'+data.url}}">{{data.name}}</a></dd>
                     </dl>
                 </li>
             </ul>

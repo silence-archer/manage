@@ -1,0 +1,64 @@
+<div class="demoTable">
+    svn地址：
+    <div class="layui-inline" style="width: 730px;">
+        <input class="layui-input" name="id" id="demoReload" ng-model="url" autocomplete="off">
+    </div>
+    <button class="layui-btn layui-btn-normal" ng-click="search()">搜索</button>
+    <button class="layui-btn" ng-click="checkout()">全部检出</button>
+</div>
+<table class="layui-table">
+    <colgroup>
+        <col width="150">
+        <col width="150">
+    </colgroup>
+    <thead>
+    <tr>
+        <th>svn地址</th>
+        <th>文件名称</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="info in infos">
+        <td><a href="javascript:void(0);" ng-click="browser(info.url)">{{info.url}}</a></td>
+        <td>{{info.name}}</td>
+    </tr>
+    </tbody>
+</table>
+<div class="layui-row" id="dialog" style="display:none;">
+    <br/>
+    <form class="layui-form">
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">用户名</label>
+            <div class="layui-input-inline" style="width: 250px;">
+                <input type="text" name="username" id="username" lay-verify="required"
+                       placeholder="请输入用户名"
+                       autocomplete="off"
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">密码</label>
+            <div class="layui-input-inline" style="width: 250px;">
+                <input type="password" name="password" id="password" lay-verify="required"
+                       placeholder="请输入密码"
+                       autocomplete="off"
+                       class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button type="submit" class="layui-btn" lay-submit lay-filter="formSvnUser" >提交</button>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="layui-row" id="logView" style="display:none;">
+    <form class="layui-form" lay-filter="example">
+        <div class="layui-form-item layui-form-text">
+                <textarea class="layui-textarea" name="logInfo" id="logInfo" style="height: 230px"></textarea>
+        </div>
+    </form>
+
+</div>
