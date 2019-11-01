@@ -1,0 +1,36 @@
+<form class="layui-form">
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">版本管理</label>
+            <div class="layui-input-inline" style="width: 230px;">
+                <select ng-model="url" lay-filter="test">
+                    <option ng-repeat="item in items" value="{{item.url}}">{{item.svnName}}</option>
+                </select>
+
+            </div>
+        </div>
+        <div class="layui-inline">
+            <button class="layui-btn layui-btn-normal" type="button" ng-click="loadSvn()">搜索</button>
+        </div>
+    </div>
+</form>
+
+
+<table class="layui-table">
+    <colgroup>
+        <col width="150">
+        <col width="150">
+    </colgroup>
+    <thead>
+    <tr>
+        <th>文件名称</th>
+        <th>版本控制状态</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="info in infos">
+        <td><a href="javascript:void(0);" ng-click="browser(info.fileName)">{{info.fileName}}</a></td>
+        <td>{{info.fileSvnStatus}}</td>
+    </tr>
+    </tbody>
+</table>

@@ -16,6 +16,9 @@ app.config(function ($httpProvider,$routeProvider){
     }).when('/svnLogInfo',{
         templateUrl: 'robot/svnLogInfo/svnLogInfo.html',
         controller: 'svnLogInfoController'
+    }).when('/svnLocalInfo',{
+        templateUrl: 'robot/svnLocalInfo/svnLocalInfo.html',
+        controller: 'svnLocalInfoController'
     }).when('/',{
         templateUrl: 'robot/welcome/welcome.html',
         controller: 'welcomeController'
