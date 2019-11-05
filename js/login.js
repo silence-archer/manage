@@ -1,10 +1,12 @@
 var app = angular.module('loginApp', []);
-app.controller('loginController', function ($scope, $http) {
+// app .constant('myUrl', 'http://192.168.84.131:8081/');
+app .constant('myUrl', 'http://127.0.0.1:8081/');
+app.controller('loginController', function ($scope, $http,myUrl) {
     var config = {
         withCredentials: true
     };
     var verify = function(){
-        $http.get("http://127.0.0.1:8081/verifyCode",config).then(function successCallback(response) {
+        $http.get(myUrl+"verifyCode",config).then(function successCallback(response) {
             console.log(response);
             $scope.verifyCode = response.data.imageCode;
 
@@ -23,7 +25,7 @@ app.controller('loginController', function ($scope, $http) {
 
     var login = function () {
         console.log($scope.user);
-        $http.post("http://127.0.0.1:8081/login",$scope.user,config).then(function successCallback(response) {
+        $http.post(myUrl+"login",$scope.user,config).then(function successCallback(response) {
             console.log(response);
             if(response.data.code != '000000'){
                 layer.msg(response.data.message);
