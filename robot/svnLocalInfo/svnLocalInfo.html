@@ -3,14 +3,17 @@
         <div class="layui-inline">
             <label class="layui-form-label">版本管理</label>
             <div class="layui-input-inline" style="width: 230px;">
-                <select ng-model="url" lay-filter="test">
+                <select id="url" lay-filter="test">
                     <option ng-repeat="item in items" value="{{item.url}}">{{item.svnName}}</option>
                 </select>
 
             </div>
         </div>
         <div class="layui-inline">
-            <button class="layui-btn layui-btn-normal" type="button" ng-click="loadSvn()">搜索</button>
+            <button class="layui-btn layui-btn-normal" type="button" ng-click="loadSvn()">加载SVN信息</button>
+        </div>
+        <div class="layui-inline">
+            <button class="layui-btn layui-btn-normal" type="button" ng-click="updateSvn()">更新</button>
         </div>
     </div>
 </form>

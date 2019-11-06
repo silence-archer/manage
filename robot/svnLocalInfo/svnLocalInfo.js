@@ -1,4 +1,5 @@
-app.controller('svnLocalInfoController', function ($scope, $http, $route, myUrl) {
+app.controller('svnLocalInfoController', function ($scope, $http, $route, myUrl,$location,$timeout) {
+    $scope.infos = [];
     $http.get(myUrl + "getUrls").then(function successCallback(response) {
         if (response.data.code == '000000') {
             $scope.items = response.data.data;
@@ -26,8 +27,7 @@ app.controller('svnLocalInfoController', function ($scope, $http, $route, myUrl)
     });
 
     $scope.loadSvn = function () {
-        var params = JSON.parse(JSON.stringify($scope.infos))
-        $http.post(myUrl+"postLocalSvnInfo",params).then(function successCallback(response) {
+        $http.post(myUrl+"postLocalSvnInfo",$scope.infos).then(function successCallback(response) {
             if (response.data.code == '000000') {
                 $scope.infos = response.data.data;
             } else {
@@ -37,6 +37,29 @@ app.controller('svnLocalInfoController', function ($scope, $http, $route, myUrl)
         }, function errorCallback(response) {
             console.log(response);
         });
+    };
+
+    $scope.updateSvn = function () {
+        layui.use('form', function () {
+            var $ = layui.jquery;
+            var data = $("#url").val();
+            $http.get(myUrl+"updateSvnInfo?url="+data).then(function successCallback(response) {
+                if (response.data.code == '000000') {
+                    layer.msg("操作成功", {icon: 6});
+                    $timeout(function () {
+                            $location.url("/svnLogInfo");
+                        },
+                        1000
+                    );
+                } else {
+                    layer.msg(response.data.message, {icon: 5});
+                }
+
+            }, function errorCallback(response) {
+                console.log(response);
+            });
+        });
+
     };
 
 
