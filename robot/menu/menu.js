@@ -6,7 +6,7 @@ app.controller('menuController',function ($scope, $http,myUrl) {
 
         var menuData = [];
         $http.get(myUrl+"getMenuData").then(function successCallback(response) {
-            if(response.data.code == '000000'){
+            if(response.data.code === 0){
                 menuData = response.data.data;
                 //开启节点操作图标
                 tree.render({
@@ -44,7 +44,7 @@ app.controller('menuController',function ($scope, $http,myUrl) {
                     }
                 });
             }else{
-                layer.msg(response.data.message);
+                layer.msg(response.data.msg);
             }
 
         }, function errorCallback(response) {
@@ -57,10 +57,10 @@ app.controller('menuController',function ($scope, $http,myUrl) {
 
     function http(url, data) {
         $http.post(myUrl+url,data).then(function successCallback(response) {
-            if(response.data.code == '000000'){
+            if(response.data.code === 0){
                 location.reload(true);
             }else{
-                layer.msg(response.data.message,{
+                layer.msg(response.data.msg,{
                     time: 500 //（如果不配置，默认是3秒）
                 },function(){
                     location.reload(true);

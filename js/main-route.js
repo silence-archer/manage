@@ -19,6 +19,9 @@ app.config(function ($httpProvider,$routeProvider){
     }).when('/svnLocalInfo',{
         templateUrl: 'robot/svnLocalInfo/svnLocalInfo.html',
         controller: 'svnLocalInfoController'
+    }).when('/wechat',{
+        templateUrl: 'robot/wechat/wechat.html',
+        controller: 'wechatController'
     }).when('/',{
         templateUrl: 'robot/welcome/welcome.html',
         controller: 'welcomeController'

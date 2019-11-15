@@ -3,11 +3,11 @@ app.controller('svnCheckoutController',function ($scope, $http, $route,myUrl,dia
     var svnName = "";
     $scope.search = function () {
         $http.get(myUrl+'repoBrowser?url='+$scope.url).then(function successCallback(response) {
-            if(response.data.code == '000000'){
+            if(response.data.code === 0){
                 $scope.infos = response.data.data;
                 svnName = $scope.infos[0].svnName;
             }else{
-                layer.msg(response.data.message, {icon: 5});
+                layer.msg(response.data.msg, {icon: 5});
             }
 
         }, function errorCallback(response) {

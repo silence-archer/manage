@@ -1,7 +1,7 @@
 app.service('dialogService', function($http,$location,myUrl,$route,$sce) {
     this.dialogHttp = function (url,data) {
         $http.post(myUrl+url,data).then(function successCallback(response) {
-            if(response.data.code === '000000'){
+            if(response.data.code === 0){
                 // layer.closeAll('loading');
                 // layer.load(2);
                 layer.msg("操作成功", {icon: 6});
@@ -13,7 +13,7 @@ app.service('dialogService', function($http,$location,myUrl,$route,$sce) {
                 );
                 //加载层-风格
             }else{
-                layer.msg(response.data.message, {icon: 5});
+                layer.msg(response.data.msg, {icon: 5});
             }
 
         }, function errorCallback(response) {
@@ -23,7 +23,7 @@ app.service('dialogService', function($http,$location,myUrl,$route,$sce) {
 
     this.dialogLocation = function (url,data,locationUrl) {
         $http.post(myUrl+url,data).then(function successCallback(response) {
-            if(response.data.code === '000000'){
+            if(response.data.code === 0){
                 // layer.closeAll('loading');
                 // layer.load(2);
                 layer.msg("操作成功", {icon: 6});
@@ -36,7 +36,7 @@ app.service('dialogService', function($http,$location,myUrl,$route,$sce) {
                 );
                 //加载层-风格
             }else{
-                layer.msg(response.data.message, {icon: 5});
+                layer.msg(response.data.msg, {icon: 5});
             }
 
         }, function errorCallback(response) {

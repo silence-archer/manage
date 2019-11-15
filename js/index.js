@@ -10,11 +10,11 @@ app.controller('parentController',function ($scope, $http, $route,myUrl) {
                     element = layui.element;
 
             });
-            if(response.data.code != '000000'){
+            if(response.data.code !== 0){
                 layui.use(['layer','element'], function(){
                     var layer = layui.layer,
                         element = layui.element;
-                    layer.msg(response.data.message,{
+                    layer.msg(response.data.msg,{
                         time: 500 //（如果不配置，默认是3秒）
                     },function(){
                         location.href="login.html";
@@ -23,8 +23,8 @@ app.controller('parentController',function ($scope, $http, $route,myUrl) {
             }else{
                 $scope.user.username = response.data.data.nickname;
                 $http.get(myUrl+"getNavigationMenu").then(function successCallback(response) {
-                    if(response.data.code != '000000'){
-                        layer.msg(response.data.message);
+                    if(response.data.code !== 0){
+                        layer.msg(response.data.msg);
                     }else{
                         $scope.menus = response.data.data;
                     }

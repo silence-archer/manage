@@ -27,8 +27,8 @@ app.controller('loginController', function ($scope, $http,myUrl) {
         console.log($scope.user);
         $http.post(myUrl+"login",$scope.user,config).then(function successCallback(response) {
             console.log(response);
-            if(response.data.code != '000000'){
-                layer.msg(response.data.message);
+            if(response.data.code !== 0){
+                layer.msg(response.data.msg);
             }else{
                 location.href="index.html";
             }

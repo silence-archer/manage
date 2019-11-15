@@ -5,3 +5,4 @@ document.write("<script language=javascript src='robot/message/message.js'></scr
 document.write("<script language=javascript src='robot/svnCheckout/svnCheckout.js'></script>");
 document.write("<script language=javascript src='robot/svnLogInfo/svnLogInfo.js'></script>");
 document.write("<script language=javascript src='robot/svnLocalInfo/svnLocalInfo.js'></script>");
+document.write("<script language=javascript src='robot/wechat/wechat.js'></script>");

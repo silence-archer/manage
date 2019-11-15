@@ -1,5 +1,5 @@
 app.controller('userController',function ($scope, $http, myUrl,dialogService) {
-
+    var baseUrl = myUrl;
     layui.use(['layer', 'form','table'], function(){
         var table = layui.table,
             form = layui.form,
@@ -8,7 +8,7 @@ app.controller('userController',function ($scope, $http, myUrl,dialogService) {
 
         table.render({
             elem: '#test'
-            ,url:'http://127.0.0.1:8081/getUserInfo'
+            ,url: baseUrl+'getUserInfo'
             ,toolbar: 'default' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
             ,title: '用户数据表'
             ,cols: [[
