@@ -1,26 +1,27 @@
 app.controller('wechatController',function ($scope, $http, $route,myUrl) {
     var baseUrl = myUrl.replace("http","ws");
     layui.use('layim', function(layim){
-        var socket = new WebSocket(baseUrl+"websocket/123");
+        console.log($scope.user);
+        var socket = new WebSocket(baseUrl+"websocket/"+$scope.user.id);
         //监听LayIM初始化就绪
         layim.on('ready', function(options){
             console.log(options);
             socket.onopen = function(){
-                socket.send('连接成功');
+                console.log('连接成功');
             }
         });
         //基础配置
         layim.config({
 
             init: {
-                url: myUrl+'getInitData' //接口地址（返回的数据格式见下文）
+                url: myUrl+'getInitData/'+$scope.user.id //接口地址（返回的数据格式见下文）
                 ,type: 'get' //默认get，一般可不填
                 ,data: {} //额外参数
             } //获取主面板列表信息，下文会做进一步介绍
 
             //获取群员接口（返回的数据格式见下文）
             ,members: {
-                url: myUrl+'getMembers' //接口地址（返回的数据格式见下文）
+                url: myUrl+'getMembers/'+$scope.user.id //接口地址（返回的数据格式见下文）
                 ,type: 'get' //默认get，一般可不填
                 ,data: {} //额外参数
             }
@@ -75,10 +76,19 @@ app.controller('wechatController',function ($scope, $http, $route,myUrl) {
 
         //监听收到的聊天消息，假设你服务端emit的事件名为：chatMessage
         socket.onmessage = function(res){
-            res = JSON.parse(res);
-            if(res.emit === 'chatMessage'){
+            res = JSON.parse(res.data);
+            if(res.type === 'chatMessage'){
                 layim.getMessage(res.data); //res.data即你发送消息传递的数据（阅读：监听发送的消息）
             }
+        };
+        //关闭事件
+        socket.onclose = function() {
+            console.log("Socket已关闭");
+        };
+        //发生了错误事件
+        socket.onerror = function() {
+            layer.msg("Socket发生错误")
+            //此时可以尝试刷新页面
         };
     });
 });

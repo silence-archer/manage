@@ -5,11 +5,6 @@ app.controller('parentController',function ($scope, $http, $route,myUrl) {
     $scope.getUser = function () {
         $scope.user = {};
         $http.get(myUrl+"getUser").then(function successCallback(response) {
-            layui.use(['layer','element'], function(){
-                var layer = layui.layer,
-                    element = layui.element;
-
-            });
             if(response.data.code !== 0){
                 layui.use(['layer','element'], function(){
                     var layer = layui.layer,
@@ -21,7 +16,7 @@ app.controller('parentController',function ($scope, $http, $route,myUrl) {
                     });
                 });
             }else{
-                $scope.user.username = response.data.data.nickname;
+                $scope.user = response.data.data;
                 $http.get(myUrl+"getNavigationMenu").then(function successCallback(response) {
                     if(response.data.code !== 0){
                         layer.msg(response.data.msg);
