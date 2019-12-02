@@ -14,9 +14,11 @@ app.controller('userController',function ($scope, $http, myUrl,dialogService) {
             ,cols: [[
                 {type: 'checkbox', fixed: 'left'}
                 ,{field:'id', title:'ID', width:200, fixed: 'left', unresize: true, sort: true}
-                ,{field:'username', title:'用户名', width:200}
-                ,{field:'nickname', title:'昵称', width:300}
+                ,{field:'username', title:'用户名', width:100}
+                ,{field:'nickname', title:'昵称', width:150}
                 ,{field:'createTime', title:'创建时间', width:300}
+                ,{field:'sign', title:'签名', width:300}
+                ,{field:'avatar', title:'头像地址', width:300}
                 ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:200}
             ]]
             ,page: true
@@ -31,7 +33,7 @@ app.controller('userController',function ($scope, $http, myUrl,dialogService) {
                     layer.open({
                         type: 1
                         ,title: '添加数据'
-                        ,area:['30%','300px']
+                        ,area:['30%','400px']
                         ,content: $("#dialog").html()//引用的弹出层的页面层的方式加载修改界面表单
                     });
                     //动态向表传递赋值可以参看文章进行修改界面的更新前数据的显示，当然也是异步请求的要数据的修改数据的获取
@@ -51,12 +53,14 @@ app.controller('userController',function ($scope, $http, myUrl,dialogService) {
                         layer.open({
                             type: 1
                             ,title: '修改数据'
-                            ,area:['30%','300px']
+                            ,area:['30%','400px']
                             ,content: $('#dialog').html()//引用的弹出层的页面层的方式加载修改界面表单
                             ,success: function(layero, index){
                                 form.val('example',{
                                     'username': data[0].username,
-                                    'nickname': data[0].nickname
+                                    'nickname': data[0].nickname,
+                                    'sign': data[0].sign,
+                                    'avatar': data[0].avatar
                                 });
                             }
                         });
@@ -64,6 +68,8 @@ app.controller('userController',function ($scope, $http, myUrl,dialogService) {
                     form.on('submit(formUser)', function (info) {
                         data[0].username = info.field.username;
                         data[0].nickname = info.field.nickname;
+                        data[0].sign = info.field.sign;
+                        data[0].avatar = info.field.avatar;
                         dialogService.dialogHttp("updateUser",data[0]);
 
                         return false;//false：阻止表单跳转 true：表单跳转
@@ -73,7 +79,8 @@ app.controller('userController',function ($scope, $http, myUrl,dialogService) {
                     if(data.length === 0){
                         layer.msg('请选择一行');
                     } else {
-                        layer.msg('删除');
+                        dialogService.delHttpService('deleteUser?id='+data[0].id,'删除成功');
+
                     }
                     break;
             };
@@ -86,20 +93,37 @@ app.controller('userController',function ($scope, $http, myUrl,dialogService) {
             if(obj.event === 'del'){
                 layer.confirm('真的删除行么', function(index){
                     obj.del();
+                    dialogService.delHttpService('deleteUser?id='+data.id,'删除成功');
                     layer.close(index);
                 });
             } else if(obj.event === 'edit'){
-                layer.prompt({
-                    formType: 2
-                    ,value: data.email
-                }, function(value, index){
-                    obj.update({
-                        email: value
-                    });
-                    layer.close(index);
+                layer.open({
+                    type: 1
+                    ,title: '修改数据'
+                    ,area:['30%','400px']
+                    ,content: $('#dialog').html()//引用的弹出层的页面层的方式加载修改界面表单
+                    ,success: function(layero, index){
+                        form.val('example',{
+                            'username': data[0].username,
+                            'nickname': data[0].nickname,
+                            'sign': data[0].sign,
+                            'avatar': data[0].avatar
+                        });
+                    }
+                });
+                form.on('submit(formUser)', function (info) {
+                    data[0].username = info.field.username;
+                    data[0].nickname = info.field.nickname;
+                    data[0].sign = info.field.sign;
+                    data[0].avatar = info.field.avatar;
+                    dialogService.dialogHttp("updateUser",data[0]);
+
+                    return false;//false：阻止表单跳转 true：表单跳转
                 });
             }
         });
+
+
 
 
 

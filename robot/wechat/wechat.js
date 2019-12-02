@@ -2,7 +2,7 @@ app.controller('wechatController',function ($scope, $http, $route,myUrl) {
     var baseUrl = myUrl.replace("http","ws");
     layui.use('layim', function(layim){
         console.log($scope.user);
-        var socket = new WebSocket(baseUrl+"websocket/"+$scope.user.id);
+        var socket = new WebSocket(baseUrl+"websocket/"+$scope.user.username);
         //监听LayIM初始化就绪
         layim.on('ready', function(options){
             console.log(options);
@@ -14,14 +14,14 @@ app.controller('wechatController',function ($scope, $http, $route,myUrl) {
         layim.config({
 
             init: {
-                url: myUrl+'getInitData/'+$scope.user.id //接口地址（返回的数据格式见下文）
+                url: myUrl+'getInitData/'+$scope.user.username //接口地址（返回的数据格式见下文）
                 ,type: 'get' //默认get，一般可不填
                 ,data: {} //额外参数
             } //获取主面板列表信息，下文会做进一步介绍
 
             //获取群员接口（返回的数据格式见下文）
             ,members: {
-                url: myUrl+'getMembers/'+$scope.user.id //接口地址（返回的数据格式见下文）
+                url: myUrl+'getMembers/'+$scope.user.username //接口地址（返回的数据格式见下文）
                 ,type: 'get' //默认get，一般可不填
                 ,data: {} //额外参数
             }
@@ -43,6 +43,7 @@ app.controller('wechatController',function ($scope, $http, $route,myUrl) {
                 ,title: '代码' //工具名称
                 ,icon: '&#xe64e;' //工具图标，参考图标文档
             }]
+            ,find: 'find.html' //发现页面地址，若不开启，剔除该项即可
 
         });
         //监听在线状态切换
@@ -72,6 +73,21 @@ app.controller('wechatController',function ($scope, $http, $route,myUrl) {
                 type: 'chatMessage' //随便定义，用于在服务端区分消息类型
                 ,data: res
             }));
+        });
+
+        //监听自定义工具栏点击，以添加代码为例
+        layim.on('tool(code)', function(insert, send, obj){ //事件中的tool为固定字符，而code则为过滤器，对应的是工具别名（alias）
+            layer.prompt({
+                title: '插入代码'
+                ,formType: 2
+                ,shade: 0
+            }, function(text, index){
+                layer.close(index);
+                insert('[pre class=layui-code]' + text + '[/pre]'); //将内容插入到编辑器，主要由insert完成
+                //send(); //自动发送
+            });
+            console.log(this); //获取当前工具的DOM对象
+            console.log(obj); //获得当前会话窗口的DOM对象、基础信息
         });
 
         //监听收到的聊天消息，假设你服务端emit的事件名为：chatMessage

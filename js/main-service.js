@@ -44,5 +44,18 @@ app.service('dialogService', function($http,$location,myUrl,$route,$sce) {
         });
     };
 
+    this.delHttpService = function (url,msg){
+        $http.get(myUrl+url).then(function successCallback(response) {
+            if(response.data.code === 0){
+                layer.msg(msg);
+            }else{
+                layer.msg(response.data.msg, {icon: 5});
+            }
+
+        }, function errorCallback(response) {
+            console.log(response);
+        });
+    }
+
 });
 
