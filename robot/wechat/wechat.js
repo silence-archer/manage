@@ -1,6 +1,6 @@
 app.controller('wechatController',function ($scope, $http, $route,myUrl) {
     var baseUrl = myUrl.replace("http","ws");
-    layui.use('layim', function(layim){
+    layui.use(['layim','layer','table'], function(layim){
         console.log($scope.user);
         var socket = new WebSocket(baseUrl+"websocket/"+$scope.user.username);
         //监听LayIM初始化就绪
@@ -21,7 +21,7 @@ app.controller('wechatController',function ($scope, $http, $route,myUrl) {
 
             //获取群员接口（返回的数据格式见下文）
             ,members: {
-                url: myUrl+'getMembers/'+$scope.user.username //接口地址（返回的数据格式见下文）
+                url: myUrl+'getMembers' //会自动后缀群组id参数
                 ,type: 'get' //默认get，一般可不填
                 ,data: {} //额外参数
             }
@@ -43,7 +43,7 @@ app.controller('wechatController',function ($scope, $http, $route,myUrl) {
                 ,title: '代码' //工具名称
                 ,icon: '&#xe64e;' //工具图标，参考图标文档
             }]
-            ,find: 'find.html' //发现页面地址，若不开启，剔除该项即可
+            ,find: 'robot/wechat/find/find.html' //发现页面地址，若不开启，剔除该项即可
 
         });
         //监听在线状态切换
@@ -106,5 +106,15 @@ app.controller('wechatController',function ($scope, $http, $route,myUrl) {
             layer.msg("Socket发生错误")
             //此时可以尝试刷新页面
         };
+
+
+
+
+
     });
+
+
+
+
+
 });
