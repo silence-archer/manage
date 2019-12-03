@@ -1,5 +1,5 @@
-app.controller('userController',function ($scope, $http, myUrl,dialogService) {
-    var baseUrl = myUrl;
+app.controller('userController',function ($scope, $http, dataService,dialogService) {
+    var baseUrl = dataService.getUrlData();
     layui.use(['layer', 'form','table'], function(){
         var table = layui.table,
             form = layui.form,

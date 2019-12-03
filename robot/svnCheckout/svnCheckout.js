@@ -1,4 +1,5 @@
-app.controller('svnCheckoutController',function ($scope, $http, $route,myUrl,dialogService) {
+app.controller('svnCheckoutController',function ($scope, $http, $route,dialogService, dataService) {
+    var myUrl = dataService.getUrlData();
     $scope.url = "";
     var svnName = "";
     $scope.search = function () {

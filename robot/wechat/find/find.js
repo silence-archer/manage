@@ -1,25 +1,28 @@
 layui.use(['layer', 'form','table','layim'], function(){
-    // var baseUrl = 'http://127.0.0.1:8081/';
-    // var baseUrl = 'http://192.168.84.131:8081/';
-    var baseUrl = 'http://140.143.128.92:8081/';
+    var baseUrl = null;
+
     var table = layui.table,
         layim = layui.layim,
         layer = layui.layer,
         $=layui.jquery;
-
-    table.render({
-        elem: '#test'
-        ,url: baseUrl+'getUserInfo'
-        ,title: '用户数据表'
-        ,cols: [[
-            {field:'username', title:'用户名', width:100}
-            ,{field:'nickname', title:'昵称', width:150}
-            ,{field:'sign', title:'签名', width:300}
-            ,{field:'avatar', title:'头像地址', width:300}
-            ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:200}
-        ]]
-        ,page: true
+    $.getJSON("../../../config.json", function (data){
+        console.log(data);
+        baseUrl = data.baseUrl;
+        table.render({
+            elem: '#test'
+            ,url: baseUrl+'getUserInfo'
+            ,title: '用户数据表'
+            ,cols: [[
+                {field:'username', title:'用户名', width:100}
+                ,{field:'nickname', title:'昵称', width:150}
+                ,{field:'sign', title:'签名', width:300}
+                ,{field:'avatar', title:'头像地址', width:300}
+                ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:200}
+            ]]
+            ,page: true
+        });
     });
+
 
 
     //监听行工具事件

@@ -1,4 +1,5 @@
-app.controller('wechatController',function ($scope, $http, $route,myUrl) {
+app.controller('wechatController',function ($scope, $http, $route,dataService) {
+    var myUrl = dataService.getUrlData();
     var baseUrl = myUrl.replace("http","ws");
     layui.use(['layim','layer','table'], function(layim){
         console.log($scope.user);

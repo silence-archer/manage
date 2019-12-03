@@ -1,4 +1,5 @@
-app.controller('menuController',function ($scope, $http,myUrl) {
+app.controller('menuController',function ($scope, $http, dataService) {
+    var myUrl = dataService.getUrlData();
     layui.use(['layer','tree', 'util'], function() {
         var tree = layui.tree
             , layer = layui.layer

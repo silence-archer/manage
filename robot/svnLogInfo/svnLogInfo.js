@@ -1,5 +1,5 @@
-app.controller('svnLogInfoController',function ($scope, $http, $interval,$route,myUrl) {
-
+app.controller('svnLogInfoController',function ($scope, $http, $interval,$route,dataService) {
+    var myUrl = dataService.getUrlData();
     $scope.content = "";
     layui.use(['layer'], function(){
         var $ = layui.jquery, layer = layui.layer;

@@ -1,8 +1,6 @@
 var app = angular.module('loginApp', []);
-// app .constant('myUrl', 'http://192.168.84.131:8081/');
-// app .constant('myUrl', 'http://127.0.0.1:8081/');
-app .constant('myUrl', 'http://140.143.128.92:8081/');
-app.controller('loginController', function ($scope, $http,myUrl) {
+app.controller('loginController', function ($scope, $http) {
+    var myUrl = '';
     var config = {
         withCredentials: true
     };
@@ -14,15 +12,23 @@ app.controller('loginController', function ($scope, $http,myUrl) {
         }, function errorCallback(response) {
             console.log(response);
         });
-    }
+    };
 
     $scope.getImage = function(){
-        verify();
-    }
+        //获取参数配置
+        $http.get('config.json').then(function successCallback(response) {
+            console.log(response);
+            myUrl = response.data.baseUrl;
+            verify();
+        }, function errorCallback(response) {
+            console.log(response);
+        });
+
+    };
 
     $scope.changeCode = function () {
         verify();
-    }
+    };
 
     var login = function () {
         console.log($scope.user);

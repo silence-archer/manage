@@ -1,10 +1,19 @@
 var app = angular.module('myApp', ['ngRoute']);
-// app .constant('myUrl', 'http://127.0.0.1:8081/');
-app .constant('myUrl', 'http://140.143.128.92:8081/');
-// app .constant('myUrl', 'http://192.168.84.131:8081/');
-app.controller('parentController',function ($scope, $http, $route,myUrl) {
+app.controller('parentController',function ($scope, $http, $route,dataService) {
     $scope.getUser = function () {
         $scope.user = {};
+        //获取参数配置
+        $http.get('config.json').then(function successCallback(response) {
+            console.log(response);
+            var myUrl = response.data.baseUrl;
+            dataService.setUrlData(myUrl);
+            getUserInfo(myUrl);
+        }, function errorCallback(response) {
+            console.log(response);
+        });
+    };
+
+    var getUserInfo = function (myUrl) {
         $http.get(myUrl+"getUser").then(function successCallback(response) {
             if(response.data.code !== 0){
                 layui.use(['layer','element'], function(){

@@ -1,4 +1,5 @@
-app.controller('svnLocalInfoController', function ($scope, $http, $route, myUrl,$location,$timeout) {
+app.controller('svnLocalInfoController', function ($scope, $http, $route, $location,$timeout, dataService) {
+    var myUrl = dataService.getUrlData();
     $scope.infos = [];
     $http.get(myUrl + "getUrls").then(function successCallback(response) {
         if (response.data.code === 0) {

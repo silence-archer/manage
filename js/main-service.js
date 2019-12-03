@@ -1,6 +1,7 @@
-app.service('dialogService', function($http,$location,myUrl,$route,$sce) {
+app.service('dialogService', function($http,$location,dataService,$route,$sce) {
+
     this.dialogHttp = function (url,data) {
-        $http.post(myUrl+url,data).then(function successCallback(response) {
+        $http.post(dataService.getUrlData()+url,data).then(function successCallback(response) {
             if(response.data.code === 0){
                 // layer.closeAll('loading');
                 // layer.load(2);
@@ -22,7 +23,7 @@ app.service('dialogService', function($http,$location,myUrl,$route,$sce) {
     };
 
     this.dialogLocation = function (url,data,locationUrl) {
-        $http.post(myUrl+url,data).then(function successCallback(response) {
+        $http.post(dataService.getUrlData()+url,data).then(function successCallback(response) {
             if(response.data.code === 0){
                 // layer.closeAll('loading');
                 // layer.load(2);
@@ -45,7 +46,7 @@ app.service('dialogService', function($http,$location,myUrl,$route,$sce) {
     };
 
     this.delHttpService = function (url,msg){
-        $http.get(myUrl+url).then(function successCallback(response) {
+        $http.get(dataService.getUrlData()+url).then(function successCallback(response) {
             if(response.data.code === 0){
                 layer.msg(msg);
             }else{
@@ -55,7 +56,26 @@ app.service('dialogService', function($http,$location,myUrl,$route,$sce) {
         }, function errorCallback(response) {
             console.log(response);
         });
+    };
+
+    this.getBaseUrlService = function () {
+        //获取参数配置
+        $http.get('config.json').then(function successCallback(response) {
+            console.log(response);
+        }, function errorCallback(response) {
+            console.log(response);
+        });
     }
 
+});
+
+app.service('dataService', function() {
+    var data = null;
+    this.setUrlData = function(o) {
+        data = o;
+    };
+    this.getUrlData = function() {
+        return data;
+    }
 });
 
