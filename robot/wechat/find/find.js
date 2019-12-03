@@ -1,5 +1,7 @@
 layui.use(['layer', 'form','table','layim'], function(){
-    var baseUrl = 'http://127.0.0.1:8081/';
+    // var baseUrl = 'http://127.0.0.1:8081/';
+    // var baseUrl = 'http://192.168.84.131:8081/';
+    var baseUrl = 'http://140.143.128.92:8081/';
     var table = layui.table,
         layim = layui.layim,
         layer = layui.layer,

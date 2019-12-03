@@ -1,6 +1,7 @@
 var app = angular.module('loginApp', []);
 // app .constant('myUrl', 'http://192.168.84.131:8081/');
-app .constant('myUrl', 'http://127.0.0.1:8081/');
+// app .constant('myUrl', 'http://127.0.0.1:8081/');
+app .constant('myUrl', 'http://140.143.128.92:8081/');
 app.controller('loginController', function ($scope, $http,myUrl) {
     var config = {
         withCredentials: true
