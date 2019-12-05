@@ -9,6 +9,8 @@ app.controller('userController',function ($scope, $http, dataService,dialogServi
         table.render({
             elem: '#test'
             ,url: baseUrl+'getUserInfo'
+            // ,crossDomain: true
+            // ,xhrFields: { withCredentials: true }
             ,toolbar: 'default' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
             ,title: '用户数据表'
             ,cols: [[
@@ -104,19 +106,19 @@ app.controller('userController',function ($scope, $http, dataService,dialogServi
                     ,content: $('#dialog').html()//引用的弹出层的页面层的方式加载修改界面表单
                     ,success: function(layero, index){
                         form.val('example',{
-                            'username': data[0].username,
-                            'nickname': data[0].nickname,
-                            'sign': data[0].sign,
-                            'avatar': data[0].avatar
+                            'username': data.username,
+                            'nickname': data.nickname,
+                            'sign': data.sign,
+                            'avatar': data.avatar
                         });
                     }
                 });
                 form.on('submit(formUser)', function (info) {
-                    data[0].username = info.field.username;
-                    data[0].nickname = info.field.nickname;
-                    data[0].sign = info.field.sign;
-                    data[0].avatar = info.field.avatar;
-                    dialogService.dialogHttp("updateUser",data[0]);
+                    data.username = info.field.username;
+                    data.nickname = info.field.nickname;
+                    data.sign = info.field.sign;
+                    data.avatar = info.field.avatar;
+                    dialogService.dialogHttp("updateUser",data);
 
                     return false;//false：阻止表单跳转 true：表单跳转
                 });

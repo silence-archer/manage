@@ -175,6 +175,8 @@
                 data: i.data,
                 dataType: i.dataType || "json",
                 cache: !1,
+                crossDomain: true,
+                xhrFields: { withCredentials: true },
                 success: function(i) {
                     0 == i.code ? a && a(i.data || {}) : t.msg(i.msg || (n || "Error") + ": LAYIM_NOT_GET_DATA", {
                         time: 5e3
