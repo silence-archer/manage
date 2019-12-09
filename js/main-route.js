@@ -22,6 +22,15 @@ app.config(function ($httpProvider,$routeProvider){
     }).when('/wechat',{
         templateUrl: 'robot/wechat/wechat.html',
         controller: 'wechatController'
+    }).when('/role',{
+        templateUrl: 'robot/role/role.html',
+        controller: 'roleController'
+    }).when('/addRole',{
+        templateUrl: 'robot/role/add/addRole.html',
+        controller: 'addRoleController'
+    }).when('/modifyRole',{
+        templateUrl: 'robot/role/modify/modifyRole.html',
+        controller: 'modifyRoleController'
     }).when('/',{
         templateUrl: 'robot/welcome/welcome.html',
         controller: 'welcomeController'

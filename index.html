@@ -42,7 +42,7 @@
                 </a>
                 <dl class="layui-nav-child">
                     <dd><a href="">基本资料</a></dd>
-                    <dd><a href="">安全设置</a></dd>
+                    <dd><a href="" ng-click="modifyPassword()">安全设置</a></dd>
                 </dl>
             </li>
             <li class="layui-nav-item"><a href="">退出</a></li>
@@ -74,6 +74,43 @@
     </div>
 
 </div>
-
+<!--修改密码弹出框-->
+<div class="layui-row" id="passwdDialog" style="display:none;">
+    <br/>
+    <form class="layui-form" lay-filter="passwdExample">
+        <div class="layui-form-item">
+            <label class="layui-form-label">原始密码</label>
+            <div class="layui-input-inline" style="width: 250px;">
+                <input type="password" name="oldPassword" id="oldPassword" lay-verify="required"
+                       placeholder="请输入原始密码"
+                       autocomplete="off"
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">密码</label>
+            <div class="layui-input-inline" style="width: 250px;">
+                <input type="password" name="password" id="password" lay-verify="required"
+                       placeholder="请输入密码"
+                       autocomplete="off"
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">确认密码</label>
+            <div class="layui-input-inline" style="width: 250px;">
+                <input type="password" name="reqPassword" id="reqPassword" lay-verify="required"
+                       placeholder="请再次输入密码"
+                       autocomplete="off"
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button type="submit" class="layui-btn" lay-submit lay-filter="formPasswd" >提交</button>
+            </div>
+        </div>
+    </form>
+</div>
 </body>
 </html>

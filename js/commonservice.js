@@ -6,3 +6,6 @@ document.write("<script language=javascript src='robot/svnCheckout/svnCheckout.j
 document.write("<script language=javascript src='robot/svnLogInfo/svnLogInfo.js'></script>");
 document.write("<script language=javascript src='robot/svnLocalInfo/svnLocalInfo.js'></script>");
 document.write("<script language=javascript src='robot/wechat/wechat.js'></script>");
+document.write("<script language=javascript src='robot/role/role.js'></script>");
+document.write("<script language=javascript src='robot/role/add/addRole.js'></script>");
+document.write("<script language=javascript src='robot/role/modify/modifyRole.js'></script>");

@@ -68,14 +68,20 @@ app.service('dialogService', function($http,$location,dataService,$route,$sce) {
     }
 
 });
-
 app.service('dataService', function() {
     var data = null;
+    var urlData = null;
     this.setUrlData = function(o) {
-        data = o;
+        urlData = o;
     };
     this.getUrlData = function() {
+        return urlData;
+    };
+    this.setData = function(o) {
+        data = o;
+    };
+    this.getData = function() {
         return data;
-    }
+    };
 });
 

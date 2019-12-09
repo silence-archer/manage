@@ -1,0 +1,23 @@
+<div class="layui-row">
+    <br/>
+    <form class="layui-form" lay-filter="roleExample">
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">角色名称</label>
+            <div class="layui-input-inline" style="width: 250px;">
+                <input type="text" name="roleName" id="roleName" lay-verify="required"
+                       placeholder="请输入角色名称"
+                       autocomplete="off"
+                       class="layui-input">
+            </div>
+        </div>
+        <div id="roleTree" class="demo-tree-more"></div>
+        <br/>
+        <div class="layui-form-item">
+            <div class="layui-input-block" style="width: 216px; margin: 0;">
+                <button type="submit" class="layui-btn layui-btn-fluid" lay-submit lay-filter="formRole" >提交</button>
+            </div>
+        </div>
+    </form>
+
+</div>

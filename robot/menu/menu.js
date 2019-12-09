@@ -40,9 +40,7 @@ app.controller('menuController',function ($scope, $http, dataService) {
                             http("addMenuData",data);
                         };
                     }
-                    ,click: function(obj){
-                        layer.msg(JSON.stringify(obj));
-                    }
+
                 });
             }else{
                 layer.msg(response.data.msg);
