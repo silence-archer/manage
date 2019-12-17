@@ -5,21 +5,21 @@ app.controller('modifyRoleController',function ($scope, $http, dataService,dialo
             , layer = layui.layer
             , form = layui.form;
         //获取菜单列表
-        var data = dataService.getData();
-        if(data == null){
-            data = {
+        var dataInfo = dataService.getData();
+        if(dataInfo == null){
+            dataInfo = {
                 menuData:[]
             }
         }
         tree.render({
             elem: '#roleTree'
-            ,data: data.menuData
+            ,data: dataInfo.menuData
             ,showCheckbox: true  //是否显示复选框
             ,id: 'demoId'
         });
         //表单赋值
         form.val('roleExample',{
-            "roleName": data.roleName
+            "roleName": dataInfo.roleName
         });
         //监听提交
         form.on('submit(formRole)', function(data){
@@ -29,11 +29,12 @@ app.controller('modifyRoleController',function ($scope, $http, dataService,dialo
             }else{
                 var param = {
                     type :  data.field.roleName,
+                    apiCd : dataInfo.roleNo,
                     data : checkData
                 };
-                $http.post(baseUrl+"addRole",param).then(function successCallback(response) {
+                $http.post(baseUrl+"modifyRole",param).then(function successCallback(response) {
                     if(response.data.code === 0){
-                        layer.msg("添加成功",{icon:6});
+                        layer.msg("修改成功",{icon:6});
                         $location.url("/role");
                     }else{
                         layer.msg(response.data.msg,{icon:5});

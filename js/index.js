@@ -58,7 +58,14 @@ app.controller('parentController',function ($scope, $http, $route,dataService,di
                 $scope.user = response.data.data;
                 $http.get(myUrl+"getNavigationMenu").then(function successCallback(response) {
                     if(response.data.code !== 0){
-                        layer.msg(response.data.msg);
+                        layui.use('layer', function(){
+                            var layer = layui.layer;
+                            layer.msg(response.data.msg,{
+                                time: 500 //（如果不配置，默认是3秒）
+                            },function(){
+                                location.href="login.html";
+                            });
+                        });
                     }else{
                         $scope.menus = response.data.data;
                         layui.use('element', function(){

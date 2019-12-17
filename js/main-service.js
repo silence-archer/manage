@@ -45,10 +45,11 @@ app.service('dialogService', function($http,$location,dataService,$route,$sce) {
         });
     };
 
-    this.delHttpService = function (url,msg){
+    this.delHttpService = function (url,msg,table,id){
         $http.get(dataService.getUrlData()+url).then(function successCallback(response) {
             if(response.data.code === 0){
                 layer.msg(msg);
+                table.reload(id,true);
             }else{
                 layer.msg(response.data.msg, {icon: 5});
             }
@@ -57,6 +58,8 @@ app.service('dialogService', function($http,$location,dataService,$route,$sce) {
             console.log(response);
         });
     };
+
+
 
     this.getBaseUrlService = function () {
         //获取参数配置

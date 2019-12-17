@@ -12,6 +12,7 @@ app.controller('roleController',function ($scope, $http, dataService,dialogServi
         table.render({
             elem: '#roleTest'
             ,url: baseUrl+'getRoleInfo'
+            ,id: 'roleTest'
             ,toolbar: 'default' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
             ,title: '角色信息表'
             ,cols: [[
@@ -42,6 +43,7 @@ app.controller('roleController',function ($scope, $http, dataService,dialogServi
                         console.log(data[0]);
                         var param = {
                             menuData: data[0].menuNos,
+                            roleNo: data[0].roleNo,
                             roleName: data[0].roleName
                         };
                         dataService.setData(param);
@@ -52,8 +54,7 @@ app.controller('roleController',function ($scope, $http, dataService,dialogServi
                     if(data.length === 0){
                         layer.msg('请选择一行');
                     } else {
-                        dialogService.delHttpService('deleteUser?id='+data[0].id,'删除成功');
-
+                        dialogService.delHttpService('deleteRole?roleNo='+data[0].roleNo,'删除成功',table,'roleTest');
                     }
                     break;
             };
@@ -66,33 +67,17 @@ app.controller('roleController',function ($scope, $http, dataService,dialogServi
             if(obj.event === 'del'){
                 layer.confirm('真的删除行么', function(index){
                     obj.del();
-                    dialogService.delHttpService('deleteUser?id='+data.id,'删除成功');
+                    dialogService.delHttpService('deleteRole?roleNo='+data.roleNo,'删除成功',table,'roleTest');
                     layer.close(index);
                 });
             } else if(obj.event === 'edit'){
-                layer.open({
-                    type: 1
-                    ,title: '修改数据'
-                    ,area:['30%','400px']
-                    ,content: $('#dialog').html()//引用的弹出层的页面层的方式加载修改界面表单
-                    ,success: function(layero, index){
-                        form.val('example',{
-                            'username': data.username,
-                            'nickname': data.nickname,
-                            'sign': data.sign,
-                            'avatar': data.avatar
-                        });
-                    }
-                });
-                form.on('submit(formRole)', function (info) {
-                    data.username = info.field.username;
-                    data.nickname = info.field.nickname;
-                    data.sign = info.field.sign;
-                    data.avatar = info.field.avatar;
-                    dialogService.dialogHttp("updateUser",data);
-
-                    return false;//false：阻止表单跳转 true：表单跳转
-                });
+                var param = {
+                    menuData: data.menuNos,
+                    roleNo: data.roleNo,
+                    roleName: data.roleName
+                };
+                dataService.setData(param);
+                location.replace(location.href.split("#")[0]+"#!/modifyRole");
             }
         });
 

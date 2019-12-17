@@ -5,6 +5,20 @@ app.controller('userController',function ($scope, $http, dataService,dialogServi
             form = layui.form,
             layer = layui.layer,
             $=layui.jquery;
+        var roleDataInfo;
+        $http.get(baseUrl+"queryRoleSelectInfo").then(function successCallback(response) {
+            if(response.data.code === 0){
+                roleDataInfo = response.data.data;
+                $.each(roleDataInfo,function (index, item) {
+                    $("#roleNo").append("<option value="+item.roleNo+">"+item.roleName+"</option>");
+                });
+            }else{
+                layer.msg(response.data.msg,{icon:5});
+            }
+
+        }, function errorCallback(response) {
+            console.log(response);
+        });
 
         table.render({
             elem: '#test'
@@ -15,16 +29,18 @@ app.controller('userController',function ($scope, $http, dataService,dialogServi
             ,title: '用户数据表'
             ,cols: [[
                 {type: 'checkbox', fixed: 'left'}
-                ,{field:'id', title:'ID', width:200, fixed: 'left', unresize: true, sort: true}
+                ,{field:'id', title:'ID', width:250, fixed: 'left', unresize: true, sort: true}
                 ,{field:'username', title:'用户名', width:100}
                 ,{field:'nickname', title:'昵称', width:150}
-                ,{field:'createTime', title:'创建时间', width:300}
+                ,{field:'createTime', title:'创建时间', width:200}
                 ,{field:'sign', title:'签名', width:300}
-                ,{field:'avatar', title:'头像地址', width:300}
+                ,{field:'avatar', title:'头像地址', width:200}
+                ,{field:'roleName', title:'角色名称', width:200}
                 ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:200}
             ]]
             ,page: true
         });
+
 
         //监听头工具栏事件
         table.on('toolbar(test)', function(obj){
@@ -37,6 +53,9 @@ app.controller('userController',function ($scope, $http, dataService,dialogServi
                         ,title: '添加数据'
                         ,area:['30%','400px']
                         ,content: $("#dialog").html()//引用的弹出层的页面层的方式加载修改界面表单
+                        ,success: function(layero, index){
+                            form.render('select');
+                        }
                     });
                     //动态向表传递赋值可以参看文章进行修改界面的更新前数据的显示，当然也是异步请求的要数据的修改数据的获取
                     form.on('submit(formUser)', function (data) {
@@ -59,11 +78,17 @@ app.controller('userController',function ($scope, $http, dataService,dialogServi
                             ,content: $('#dialog').html()//引用的弹出层的页面层的方式加载修改界面表单
                             ,success: function(layero, index){
                                 form.val('example',{
-                                    'username': data[0].username,
-                                    'nickname': data[0].nickname,
-                                    'sign': data[0].sign,
-                                    'avatar': data[0].avatar
-                                });
+                                                'username': data[0].username,
+                                                'nickname': data[0].nickname,
+                                                'sign': data[0].sign,
+                                                'roleNo': data[0].roleNo,
+                                                'avatar': data[0].avatar
+                                            });
+                                $("#roleNo").find("option[value='"+data[0].roleNo+"']").attr('selected','selected');
+
+                                console.log($("#roleNo").html());
+                                form.render('select');
+
                             }
                         });
                     }
@@ -72,6 +97,7 @@ app.controller('userController',function ($scope, $http, dataService,dialogServi
                         data[0].nickname = info.field.nickname;
                         data[0].sign = info.field.sign;
                         data[0].avatar = info.field.avatar;
+                        data[0].roleNo = info.field.roleNo;
                         dialogService.dialogHttp("updateUser",data[0]);
 
                         return false;//false：阻止表单跳转 true：表单跳转
@@ -109,6 +135,7 @@ app.controller('userController',function ($scope, $http, dataService,dialogServi
                             'username': data.username,
                             'nickname': data.nickname,
                             'sign': data.sign,
+                            'roleNo': data.roleNo,
                             'avatar': data.avatar
                         });
                     }
@@ -117,6 +144,7 @@ app.controller('userController',function ($scope, $http, dataService,dialogServi
                     data.username = info.field.username;
                     data.nickname = info.field.nickname;
                     data.sign = info.field.sign;
+                    data.roleNo = info.field.roleNo;
                     data.avatar = info.field.avatar;
                     dialogService.dialogHttp("updateUser",data);
 
