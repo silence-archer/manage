@@ -10,6 +10,9 @@ app.config(function ($httpProvider,$routeProvider){
     }).when('/user',{
         templateUrl: 'robot/user/user.html',
         controller: 'userController'
+    }).when('/schedule',{
+        templateUrl: 'robot/schedule/schedule.html',
+        controller: 'scheduleController'
     }).when('/svnCheckout',{
         templateUrl: 'robot/svnCheckout/svnCheckout.html',
         controller: 'svnCheckoutController'
