@@ -34,6 +34,9 @@ app.config(function ($httpProvider,$routeProvider){
     }).when('/modifyRole',{
         templateUrl: 'robot/role/modify/modifyRole.html',
         controller: 'modifyRoleController'
+    }).when('/mock',{
+        templateUrl: 'robot/mock/mock.html',
+        controller: 'mockController'
     }).when('/',{
         templateUrl: 'robot/welcome/welcome.html',
         controller: 'welcomeController'
