@@ -16,7 +16,20 @@ app.controller('mockController',function ($scope, $http, dataService,dialogServi
             ,cols: [[
                 {type: 'checkbox', fixed: 'left'}
                 ,{field:'mockUrl', title:'挡板URL', width:250, fixed: 'left', unresize: true, sort: true}
-                ,{field:'mockModule', title:'挡板模块', width:100}
+                , {
+                    field: 'mockModule', title: '挡板模块', width: 100, templet: function (d) {
+                        if (d.mockModule === 'CL') {
+                            return '贷款';
+                        }
+                        if (d.mockModule === 'RB') {
+                            return '存款';
+                        }
+                        if (d.mockModule === 'OB') {
+                            return '公共';
+                        }
+                    }
+                }
+
                 ,{field:'mockName', title:'挡板名称', width:100}
                 ,{field:'mockInput', title:'挡板入参', width:150}
                 ,{field:'mockOutput', title:'挡板出参', width:200}
@@ -24,7 +37,20 @@ app.controller('mockController',function ($scope, $http, dataService,dialogServi
             ]]
             ,page: true
         });
+        $scope.search = function () {
 
+            table.reload('test', {
+                url: baseUrl+'getMockInfoByCondition',
+                where: {
+                    mockName : $scope.name,
+                    mockUrl : $scope.url,
+                    mockModule : $('#module').val()
+                },
+                page: {
+                    curr: 1 //重新从第 1 页开始
+                }
+            });
+        }
 
         //监听头工具栏事件
         table.on('toolbar(test)', function(obj){
