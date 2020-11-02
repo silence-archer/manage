@@ -1,37 +1,40 @@
-<form class="layui-form" id="b" action="">
-    <div class="layui-inline">
-        <label class="layui-form-label">挡板名称:</label>
-        <div class="layui-input-block">
-            <input type="text" name="name" id="name" ng-model="name" placeholder="请输入挡板名称" autocomplete="off" class="layui-input">
+<form class="layui-form" id="test1" lay-filter="test1">
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">挡板URL:</label>
+            <div class="layui-input-inline">
+                <input type="text" name="url" id="url" ng-model="url" placeholder="请输入挡板URL" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">挡板名称:</label>
+            <div class="layui-input-inline">
+                <input type="text" name="name" id="name" ng-model="name" placeholder="请输入挡板名称" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">挡板模块:</label>
+            <div class="layui-input-block">
+                <select name="module" id="module" >
+                    <option value="">请选择</option>
+                    <option value="CL">贷款</option>
+                    <option value="RB">存款</option>
+                    <option value="OB">公共</option>
+                </select>
+            </div>
         </div>
     </div>
-    <div class="layui-inline">
-        <label class="layui-form-label">挡板URL:</label>
-        <div class="layui-input-block">
-            <input type="text" name="url" id="url" ng-model="url" placeholder="请输入挡板URL" autocomplete="off" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-inline">
-        <label class="layui-form-label">挡板模块:</label>
-        <div class="layui-input-block">
 
-            <select name="module" id="module" ng-model="module" lay-filter="test">
-                <option value="">请选择</option>
-                <option value="CL">贷款</option>
-                <option value="RB">存款</option>
-                <option value="OB">公共</option>
-            </select>
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <div class="layui-inline">
+                <button type="reset" class="layui-btn layui-btn-primary" >重置</button>
+                <button class="layui-btn" ng-click="search()" >搜索</button>
+            </div>
         </div>
     </div>
-    <div class="layui-inline"></div>
-    <div class="layui-inline"></div>
-    <div class="layui-inline"></div>
-    <div class="layui-inline"></div>
-    <div class="layui-inline"></div>
-    <div class="layui-inline">
-        <button type="reset" class="layui-btn layui-btn-primary face-btn" style="height:35px;">重置</button>
-        <button class="layui-btn face-btn" ng-click="search()" type="button" style="height:35px;">搜索</button>
-    </div>
+
 </form>
 <table class="layui-hide" id="test" lay-filter="test"></table>
 <div class="layui-row" id="dialog" style="display:none;">

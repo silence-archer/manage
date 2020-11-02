@@ -6,6 +6,8 @@ app.controller('mockController',function ($scope, $http, dataService,dialogServi
             layer = layui.layer,
             $=layui.jquery;
 
+        form.render('select');
+
         table.render({
             elem: '#test'
             ,url: baseUrl+'getMockInfo'
@@ -63,9 +65,13 @@ app.controller('mockController',function ($scope, $http, dataService,dialogServi
                         ,title: '添加数据'
                         ,area:['50%','500px']
                         ,content: $("#dialog").html()//引用的弹出层的页面层的方式加载修改界面表单
+                        ,success: function(layero, index){
+                            form.render('select');
+                        }
                     });
                     //动态向表传递赋值可以参看文章进行修改界面的更新前数据的显示，当然也是异步请求的要数据的修改数据的获取
                     form.on('submit(formMock)', function (data) {
+                        form.render('select');
                         dialogService.dialogHttp("addMock",data.field);
 
                         return false;//false：阻止表单跳转 true：表单跳转
