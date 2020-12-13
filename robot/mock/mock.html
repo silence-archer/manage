@@ -27,12 +27,16 @@
 
 
     <div class="layui-form-item">
-        <div class="layui-input-block">
+        <div class="layui-inline">
+            <label class="layui-form-label">挡板入参:</label>
+            <div class="layui-input-inline">
+                <input type="text" name="input" id="input" ng-model="input" placeholder="请输入挡板入参" autocomplete="off" class="layui-input">
+            </div>
+        </div>
             <div class="layui-inline">
                 <button type="reset" class="layui-btn layui-btn-primary" >重置</button>
                 <button class="layui-btn" ng-click="search()" >搜索</button>
             </div>
-        </div>
     </div>
 
 </form>

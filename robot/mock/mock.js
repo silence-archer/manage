@@ -46,6 +46,7 @@ app.controller('mockController',function ($scope, $http, dataService,dialogServi
                 where: {
                     mockName : $scope.name,
                     mockUrl : $scope.url,
+                    mockInput : $scope.input,
                     mockModule : $('#module').val()
                 },
                 page: {

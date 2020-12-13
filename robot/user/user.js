@@ -36,6 +36,7 @@ app.controller('userController',function ($scope, $http, dataService,dialogServi
                 ,{field:'sign', title:'签名', width:300}
                 ,{field:'avatar', title:'头像地址', width:200}
                 ,{field:'roleName', title:'角色名称', width:200}
+                ,{field:'ipAddr', title:'ip地址', width:200}
                 ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:200}
             ]]
             ,page: true
@@ -82,6 +83,7 @@ app.controller('userController',function ($scope, $http, dataService,dialogServi
                                                 'nickname': data[0].nickname,
                                                 'sign': data[0].sign,
                                                 'roleNo': data[0].roleNo,
+                                                'ipAddr': data[0].ipAddr,
                                                 'avatar': data[0].avatar
                                             });
                                 $("#roleNo").find("option[value='"+data[0].roleNo+"']").attr('selected','selected');
@@ -98,6 +100,7 @@ app.controller('userController',function ($scope, $http, dataService,dialogServi
                         data[0].sign = info.field.sign;
                         data[0].avatar = info.field.avatar;
                         data[0].roleNo = info.field.roleNo;
+                        data[0].ipAddr = info.field.ipAddr;
                         dialogService.dialogHttp("updateUser",data[0]);
 
                         return false;//false：阻止表单跳转 true：表单跳转
@@ -136,6 +139,7 @@ app.controller('userController',function ($scope, $http, dataService,dialogServi
                             'nickname': data.nickname,
                             'sign': data.sign,
                             'roleNo': data.roleNo,
+                            'ipAddr': data.ipAddr,
                             'avatar': data.avatar
                         });
                     }
@@ -146,6 +150,7 @@ app.controller('userController',function ($scope, $http, dataService,dialogServi
                     data.sign = info.field.sign;
                     data.roleNo = info.field.roleNo;
                     data.avatar = info.field.avatar;
+                    data.ipAddr = info.field.ipAddr;
                     dialogService.dialogHttp("updateUser",data);
 
                     return false;//false：阻止表单跳转 true：表单跳转

@@ -74,6 +74,13 @@ app.service('dialogService', function($http,$location,dataService,$route,$sce) {
 app.service('dataService', function() {
     var data = null;
     var urlData = null;
+    var othUrlData = null;
+    this.setOthUrlData = function(o) {
+        othUrlData = o;
+    };
+    this.getOthUrlData = function() {
+        return othUrlData;
+    };
     this.setUrlData = function(o) {
         urlData = o;
     };

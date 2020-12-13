@@ -37,6 +37,9 @@ app.config(function ($httpProvider,$routeProvider){
     }).when('/mock',{
         templateUrl: 'robot/mock/mock.html',
         controller: 'mockController'
+    }).when('/interface',{
+        templateUrl: 'robot/interface/interface.html',
+        controller: 'interfaceController'
     }).when('/',{
         templateUrl: 'robot/welcome/welcome.html',
         controller: 'welcomeController'
