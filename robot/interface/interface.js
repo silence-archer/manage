@@ -9,7 +9,7 @@ app.controller('interfaceController',function ($scope, $http, dataService,dialog
 
         table.render({
             elem: '#test'
-            ,url: baseUrl+'getEurekaInfo'
+            ,url: baseUrl+'getEurekaInfo?eurekaUrl='+ohtUrl
             // ,crossDomain: true
             // ,xhrFields: { withCredentials: true }
             ,toolbar: 'default' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
@@ -20,7 +20,9 @@ app.controller('interfaceController',function ($scope, $http, dataService,dialog
                 ,{field:'ipAddr', title:'ip地址', width:100}
                 ,{field:'instanceId', title:'实例ID', width:150}
                 ,{field:'hostName', title:'主机名称', width:200}
-                ,{field:'owner', title:'所有者', width:200}
+                ,{field:'owner', title:'所有者', width:100}
+                ,{field:'port', title:'端口', width:50}
+                ,{field:'homePageUrl', title:'url', width:200}
                 , {
                     field: 'status', title: '状态', width: 100, templet: function (d) {
                         if (d.status === 'UP') {
@@ -51,12 +53,12 @@ app.controller('interfaceController',function ($scope, $http, dataService,dialog
                     };
                     var jsonObj = {};
                     for (var i=0; i<data.length; i++) {
-                        jsonObj[data[i].name] = data[i].ipAddr;
+                        jsonObj[data[i].name] = data[i].homePageUrl;
                     }
                     params["services"] = jsonObj;
                     console.log(params);
-                    $http.post(ohtUrl+"terr/interface/exportAll/excel",params, {responseType: 'arraybuffer'}).then(function successCallback(response) {
-                        var blob = new Blob([response.data], {type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"});
+                    $http.post(baseUrl+"terr/interface/exportAll/excel",params, {responseType: 'arraybuffer'}).then(function successCallback(response) {
+                        var blob = new Blob([response.data], {type: "application/vnd.ms-excel"});
                         var objectUrl = URL.createObjectURL(blob);
                         var a = document.createElement('a');
                         document.body.appendChild(a);

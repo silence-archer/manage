@@ -1,4 +1,4 @@
 {
   "baseUrl":"http://127.0.0.1:18002/",
-  "otherUrl":"http://127.0.0.1:18002/"
+  "otherUrl":"http://127.0.0.1:8761/eureka/apps"
 }
