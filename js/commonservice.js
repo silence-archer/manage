@@ -12,3 +12,4 @@ document.write("<script language=javascript src='robot/role/modify/modifyRole.js
 document.write("<script language=javascript src='robot/schedule/schedule.js'></script>");
 document.write("<script language=javascript src='robot/mock/mock.js'></script>");
 document.write("<script language=javascript src='robot/interface/interface.js'></script>");
+document.write("<script language=javascript src='robot/logConfig/logConfig.js'></script>");

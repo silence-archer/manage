@@ -1,0 +1,124 @@
+<form class="layui-form" id="test1" lay-filter="test1">
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">业务类型:</label>
+            <div class="layui-input-inline">
+                <input type="text" name="businessType" id="url" ng-model="businessType" placeholder="请输入业务类型" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <button type="reset" class="layui-btn layui-btn-primary" >重置</button>
+            <button class="layui-btn" ng-click="search()" >搜索</button>
+        </div>
+    </div>
+</form>
+<table class="layui-hide" id="test" lay-filter="test"></table>
+<div class="layui-row" id="dialog" style="display:none;">
+    <br/>
+    <form class="layui-form" lay-filter="example">
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">业务类型</label>
+            <div class="layui-input-inline" style="width: 250px;">
+                <input type="text" name="businessType" id="businessType" lay-verify="required"
+                       placeholder="请输入业务类型"
+                       autocomplete="off"
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">传输类型</label>
+            <div class="layui-input-inline" style="width: 250px;">
+                <input type="text" name="transferType" id="transferType" lay-verify="required"
+                       placeholder="请输入传输类型"
+                       autocomplete="off"
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">文件名</label>
+            <div class="layui-input-inline" style="width: 250px;">
+                <input type="text" name="filename" id="filename" lay-verify="required"
+                       placeholder="请输入文件名"
+                       autocomplete="off"
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">文件描述</label>
+            <div class="layui-input-inline" style="width: 250px;">
+                <input type="text" name="fileDesc" id="fileDesc" lay-verify="required"
+                       placeholder="请输入文件描述"
+                       autocomplete="off"
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">远程文件路径</label>
+            <div class="layui-input-inline" style="width: 250px;">
+                <input type="text" name="remoteFilepath" id="remoteFilepath" lay-verify="required"
+                       placeholder="请输入远程文件路径"
+                       autocomplete="off"
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">本地文件路径</label>
+            <div class="layui-input-inline" style="width: 250px;">
+                <input type="text" name="localFilepath" id="localFilepath" lay-verify="required"
+                       placeholder="请输入本地文件路径"
+                       autocomplete="off"
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">远程服务器ip</label>
+            <div class="layui-input-inline" style="width: 250px;">
+                <input type="text" name="remoteIp" id="remoteIp" lay-verify="required"
+                       placeholder="请输入远程服务器ip"
+                       autocomplete="off"
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">远程服务器端口</label>
+            <div class="layui-input-inline" style="width: 250px;">
+                <input type="text" name="remotePort" id="remotePort" lay-verify="required"
+                       placeholder="请输入远程服务器端口"
+                       autocomplete="off"
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">远程服务器用户名</label>
+            <div class="layui-input-inline" style="width: 250px;">
+                <input type="text" name="remoteUsername" id="remoteUsername" lay-verify="required"
+                       placeholder="请输入远程服务器用户名"
+                       autocomplete="off"
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">远程服务器密码</label>
+            <div class="layui-input-inline" style="width: 250px;">
+                <input type="text" name="remotePassword" id="remotePassword" lay-verify="required"
+                       placeholder="请输入远程服务器密码"
+                       autocomplete="off"
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button type="submit" class="layui-btn" lay-submit lay-filter="formLogConfig">提交</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+
+

@@ -40,6 +40,9 @@ app.config(function ($httpProvider,$routeProvider){
     }).when('/interface',{
         templateUrl: 'robot/interface/interface.html',
         controller: 'interfaceController'
+    }).when('/logConfig',{
+        templateUrl: 'robot/logConfig/logConfig.html',
+        controller: 'logConfigController'
     }).when('/',{
         templateUrl: 'robot/welcome/welcome.html',
         controller: 'welcomeController'
