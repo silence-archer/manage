@@ -27,7 +27,7 @@ app.controller('logConfigController',function ($scope, $http, dataService,dialog
                 ,{field:'remotePort', title:'远程服务器端口', width:100}
                 ,{field:'remoteUsername', title:'远程服务器用户名', width:100}
                 ,{field:'remotePassword', title:'远程服务器密码', width:100}
-                ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:100}
+                ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:200}
             ]]
             ,page: true
         });
@@ -155,16 +155,16 @@ app.controller('logConfigController',function ($scope, $http, dataService,dialog
                     }
                 });
                 form.on('submit(formLogConfig)', function (info) {
-                    data[0].businessType = info.field.businessType;
-                    data[0].transferType = info.field.transferType;
-                    data[0].filename = info.field.filename;
-                    data[0].fileDesc = info.field.fileDesc;
-                    data[0].remoteFilepath = info.field.remoteFilepath;
-                    data[0].localFilepath = info.field.localFilepath;
-                    data[0].remoteIp = info.field.remoteIp;
-                    data[0].remotePort = info.field.remotePort;
-                    data[0].remoteUsername = info.field.remoteUsername;
-                    data[0].remotePassword = info.field.remotePassword;
+                    data.businessType = info.field.businessType;
+                    data.transferType = info.field.transferType;
+                    data.filename = info.field.filename;
+                    data.fileDesc = info.field.fileDesc;
+                    data.remoteFilepath = info.field.remoteFilepath;
+                    data.localFilepath = info.field.localFilepath;
+                    data.remoteIp = info.field.remoteIp;
+                    data.remotePort = info.field.remotePort;
+                    data.remoteUsername = info.field.remoteUsername;
+                    data.remotePassword = info.field.remotePassword;
                     dialogService.dialogHttp("updateLogConfig",data);
 
                     return false;//false：阻止表单跳转 true：表单跳转
