@@ -1,0 +1,76 @@
+<form class="layui-form" id="test1" lay-filter="test1">
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">起始时间：</label>
+            <div class="layui-input-inline">
+                <input type="text" class="layui-input" id="startDate" name="startDate" ng-model="startDate" placeholder="yyyy-MM-dd HH:mm:ss">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">终止时间：</label>
+            <div class="layui-input-inline">
+                <input type="text" class="layui-input" id="endDate" name="endDate" ng-model="endDate" placeholder="yyyy-MM-dd HH:mm:ss">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">级别:</label>
+            <div class="layui-input-block">
+                <select name="level" id="level" >
+                    <option value="">请选择</option>
+                    <option value="DEBUG">DEBUG</option>
+                    <option value="INFO">INFO</option>
+                    <option value="ERROR">ERROR</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">业务类型:</label>
+            <div class="layui-input-inline">
+                <input type="text" name="businessType" id="businessType" ng-model="businessType" placeholder="请输入业务类型：" lay-verify="required" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">流水号:</label>
+            <div class="layui-input-inline">
+                <input type="text" name="traceId" id="traceId" ng-model="traceId" placeholder="请输入流水号" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">子流水号:</label>
+            <div class="layui-input-inline">
+                <input type="text" name="subTraceId" id="subTraceId" ng-model="subTraceId" placeholder="请输入子流水号" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">服务名称:</label>
+            <div class="layui-input-inline">
+                <input type="text" name="serviceName" id="serviceName" ng-model="serviceName" placeholder="请输入服务名称：" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">日志内容:</label>
+            <div class="layui-input-inline">
+                <input type="text" name="content" id="content" ng-model="content" placeholder="请输入日志内容" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+            <div class="layui-inline">
+                <button type="reset" class="layui-btn layui-btn-primary" >重置</button>
+                <button type="submit" class="layui-btn" lay-submit lay-filter="formLogFile" >搜索</button>
+                <button class="layui-btn" ng-click="delete()" >清理日志</button>
+            </div>
+    </div>
+
+</form>
+<table class="layui-hide" id="test" lay-filter="test"></table>
+
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+</script>
+
+

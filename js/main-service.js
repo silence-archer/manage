@@ -95,3 +95,26 @@ app.service('dataService', function() {
     };
 });
 
+app.service('dataDictService', function() {
+
+    this.getDataDictService = function (key) {
+        //获取参数配置
+        $http.get(dataService.getUrlData()+"getDataDictList", key).then(function successCallback(response) {
+            if(response.data.code === 0){
+                const dictList = response.data.data;
+                const dictData = [];
+                $.each(dictList,function (index, item) {
+                    dictData.push(item.enumKey, item.enumValue);
+                });
+                return dictData;
+            }else{
+                layer.msg(response.data.msg,{icon:5});
+            }
+            return response.data;
+        }, function errorCallback(response) {
+            console.log(response);
+        });
+    }
+
+});
+
