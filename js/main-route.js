@@ -35,7 +35,7 @@ app.config(function ($httpProvider,$routeProvider){
         templateUrl: 'robot/role/modify/modifyRole.html',
         controller: 'modifyRoleController'
     }).when('/mock',{
-        templateUrl: 'robot/mock/logFile.html',
+        templateUrl: 'robot/mock/mock.html',
         controller: 'mockController'
     }).when('/interface',{
         templateUrl: 'robot/interface/interface.html',
@@ -46,6 +46,12 @@ app.config(function ($httpProvider,$routeProvider){
     }).when('/logFile',{
         templateUrl: 'robot/logFile/logFile.html',
         controller: 'logFileController'
+    }).when('/dataDict',{
+        templateUrl: 'robot/dataDict/dataDict.html',
+        controller: 'dataDictController'
+    }).when('/loan',{
+        templateUrl: 'robot/loan/loan.html',
+        controller: 'loanController'
     }).when('/',{
         templateUrl: 'robot/welcome/welcome.html',
         controller: 'welcomeController'

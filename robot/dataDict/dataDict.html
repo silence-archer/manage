@@ -1,0 +1,69 @@
+<form class="layui-form" id="test1" lay-filter="test1">
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">名称</label>
+            <div class="layui-input-inline">
+                <input type="text" name="name" ng-model="name" placeholder="请输入数据字典名称" autocomplete="off" class="layui-input">
+            </div>
+            <button type="reset" class="layui-btn layui-btn-primary" >重置</button>
+            <button class="layui-btn" ng-click="search()" >搜索</button>
+        </div>
+
+    </div>
+</form>
+<table class="layui-hide" id="test" lay-filter="test"></table>
+<div class="layui-row" id="dialog" style="display:none;">
+    <br/>
+    <form class="layui-form" lay-filter="example">
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">数据字典名称</label>
+            <div class="layui-input-inline" style="width: 250px;">
+                <input type="text" name="name" id="name" lay-verify="required"
+                       placeholder="请输入数据字典名称"
+                       autocomplete="off"
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">数据字典描述</label>
+            <div class="layui-input-inline" style="width: 250px;">
+                <input type="text" name="desc" id="desc" lay-verify="required"
+                       placeholder="请输入数据字典描述"
+                       autocomplete="off"
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">数据字典枚举值</label>
+            <div class="layui-input-inline" style="width: 230px;">
+                <input type="text" name="enumName" id="enumName"
+                       placeholder="请输入数据字典枚举值"
+                       autocomplete="off"
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">数据字典枚举值描述</label>
+            <div class="layui-input-inline" style="width: 230px;">
+                <input type="text" name="enumDesc" id="enumDesc"
+                       placeholder="请输入数据字典枚举值描述"
+                       autocomplete="off"
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button type="submit" class="layui-btn" lay-submit lay-filter="formDataDict" >提交</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+
+

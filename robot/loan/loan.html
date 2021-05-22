@@ -1,0 +1,166 @@
+<form class="layui-form" id="test1" lay-filter="test1">
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">ip地址:</label>
+            <div class="layui-input-inline">
+                <select name="ip" id="ip" lay-filter="test" lay-verify="required"></select>
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">场景:</label>
+            <div class="layui-input-inline">
+                <select name="scene" id="scene" lay-filter="test" lay-verify="required"></select>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">操作类型:</label>
+            <div class="layui-input-inline">
+                <select name="optionKw" id="optionKw" lay-filter="test" lay-verify="required"></select>
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">月基准:</label>
+            <div class="layui-input-inline">
+                <select name="monthBasis" id="monthBasis" lay-filter="test" lay-verify="required"></select>
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">年基准:</label>
+            <div class="layui-input-inline">
+                <select name="yearBasis" id="yearBasis" lay-filter="test" lay-verify="required"></select>
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">放款金额:</label>
+            <input type="text" name="loanAmt" id="loanAmt" lay-verify="required"
+                   style="width: 250px;" placeholder="请输入放款金额"
+                   autocomplete="off"
+                   class="layui-input">
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">执行利率:</label>
+            <input type="text" name="realRate" id="realRate" lay-verify="required"
+                   style="width: 250px;" placeholder="请输入执行利率"
+                   autocomplete="off"
+                   class="layui-input">
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">放款日期:</label>
+            <input type="text" name="acctOpenDate" id="acctOpenDate" lay-verify="required"
+                   style="width: 250px;" placeholder="请输入放款日期"
+                   autocomplete="off"
+                   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">终止日期:</label>
+            <input type="text" name="maturityDate" id="maturityDate" lay-verify="required"
+                   style="width: 250px;" placeholder="请输入终止日期"
+                   autocomplete="off"
+                   class="layui-input">
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">到期日期:</label>
+            <input type="text" name="dueDate" id="dueDate" lay-verify="required"
+                   style="width: 250px;" placeholder="请输入到期日期"
+                   autocomplete="off"
+                   class="layui-input">
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">还款方式:</label>
+            <div class="layui-input-inline">
+                <select name="schedMode" id="schedMode" lay-filter="test" lay-verify="required"></select>
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">结息频率:</label>
+            <div class="layui-input-inline">
+                <select name="cycleFreq" id="cycleFreq" lay-filter="test" lay-verify="required"></select>
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">下次结息日期:</label>
+            <input type="text" name="nextCycleDate" id="nextCycleDate" lay-verify="required"
+                   style="width: 250px;" placeholder="请输入下次结息日期"
+                   autocomplete="off"
+                   class="layui-input">
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">结息日:</label>
+            <input type="text" name="intDay" id="intDay" lay-verify="required"
+                   style="width: 250px;" placeholder="请输入结息日"
+                   autocomplete="off"
+                   class="layui-input">
+        </div>
+    </div>
+    <table class="layui-hide" id="test" lay-filter="test"></table>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button type="submit" class="layui-btn" lay-submit lay-filter="formLoan">提交</button>
+        </div>
+    </div>
+</form>
+
+
+<div class="layui-row" id="dialog" style="display:none;">
+    <br/>
+    <form class="layui-form" lay-filter="example">
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">子还款方式</label>
+            <div class="layui-input-inline">
+                <select name="subSchedMode" id="subSchedMode" lay-filter="test" lay-verify="required"></select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">总金额</label>
+            <div class="layui-input-inline" style="width: 250px;">
+                <input type="text" name="totalAmt" id="totalAmt" lay-verify="required"
+                       placeholder="请输入总金额"
+                       autocomplete="off"
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">开始日期</label>
+            <div class="layui-input-inline" style="width: 250px;">
+                <input type="text" name="startDate" id="startDate" lay-verify="required"
+                       placeholder="请输入开始日期"
+                       autocomplete="off"
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">结束日期</label>
+            <div class="layui-input-inline" style="width: 250px;">
+                <input type="text" name="endDate" id="endDate" lay-verify="required" placeholder="请输入结束日期"
+                       autocomplete="off"
+                       class="layui-input">
+            </div>
+        </div>
+
+
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button type="submit" class="layui-btn" lay-submit lay-filter="formScheduleArray">提交</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+
+

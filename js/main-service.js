@@ -95,22 +95,21 @@ app.service('dataService', function() {
     };
 });
 
-app.service('dataDictService', function() {
+app.service('dataDictService', function($http, dataService) {
 
-    this.getDataDictService = function (key) {
+    this.getDataDictService = function (name) {
         //获取参数配置
-        $http.get(dataService.getUrlData()+"getDataDictList", key).then(function successCallback(response) {
+        $http.get(dataService.getUrlData()+"getDataDictByName?name="+name).then(function successCallback(response) {
             if(response.data.code === 0){
                 const dictList = response.data.data;
-                const dictData = [];
-                $.each(dictList,function (index, item) {
-                    dictData.push(item.enumKey, item.enumValue);
+                layui.jquery.each(dictList,function (index, item) {
+                    layui.jquery("#"+name).append("<option value="+item.enumName+">"+item.enumDesc+"</option>");
+
                 });
-                return dictData;
+                layui.form.render("select");
             }else{
                 layer.msg(response.data.msg,{icon:5});
             }
-            return response.data;
         }, function errorCallback(response) {
             console.log(response);
         });

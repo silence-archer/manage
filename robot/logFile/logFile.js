@@ -1,4 +1,4 @@
-app.controller('logFileController',function ($scope, $http, dataService,dialogService) {
+app.controller('logFileController',function ($scope, $http, dataService,dialogService, dataDictService) {
     const baseUrl = dataService.getUrlData();
     layui.use(['layer', 'form','table', 'laydate'], function(){
         var table = layui.table,
@@ -22,7 +22,10 @@ app.controller('logFileController',function ($scope, $http, dataService,dialogSe
                 $scope.endDate = value;
             }
         });
+
+        dataDictService.getDataDictService("businessType");
         form.render();
+
 
         table.render({
             elem: '#test'

@@ -14,3 +14,5 @@ document.write("<script language=javascript src='robot/mock/mock.js'></script>")
 document.write("<script language=javascript src='robot/interface/interface.js'></script>");
 document.write("<script language=javascript src='robot/logConfig/logConfig.js'></script>");
 document.write("<script language=javascript src='robot/logFile/logFile.js'></script>");
+document.write("<script language=javascript src='robot/dataDict/dataDict.js'></script>");
+document.write("<script language=javascript src='robot/loan/loan.js'></script>");

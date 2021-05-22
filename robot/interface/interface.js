@@ -34,7 +34,6 @@ app.controller('interfaceController',function ($scope, $http, dataService,dialog
                         return d.status;
                     }
                 }
-                ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:200}
             ]]
             ,page: true
         });

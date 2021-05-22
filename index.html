@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>主页</title>
     <link rel="stylesheet" href="layui/css/layui.css"/>
     <link rel="icon" href="image/favicon.ico">
@@ -19,10 +20,10 @@
 
 <div class="layui-layout layui-layout-admin" ng-app="myApp"  ng-controller="parentController" ng-init="getUser()">
     <div class="layui-header">
-        <div class="layui-logo">silence 后台管理</div>
+        <div class="layui-logo layui-hide-xs layui-bg-black">silence 后台管理</div>
         <!-- 头部区域（可配合layui已有的水平导航） -->
         <ul class="layui-nav layui-layout-right">
-            <li class="layui-nav-item">
+            <li class="layui-nav-item layui-hide layui-show-md-inline-block">
                 <a href="javascript:;">
                     <img id="touxiang" src="image/touxiang.png" class="layui-nav-img">
                     {{user.nickname}}
@@ -33,6 +34,11 @@
                 </dl>
             </li>
             <li class="layui-nav-item"><a href="" ng-click="quit()">退出</a></li>
+            <li class="layui-nav-item" lay-header-event="menuRight" lay-unselect>
+                <a href="javascript:;">
+                    <i class="layui-icon layui-icon-more-vertical"></i>
+                </a>
+            </li>
         </ul>
     </div>
 
@@ -41,7 +47,9 @@
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree"  lay-filter="test">
                 <li class="layui-nav-item layui-nav-itemed" ng-repeat="menu in menus">
-                    <a href="javascript:;">{{menu.name}}</a>
+                    <a href="javascript:;">
+                        {{menu.name}}
+                    </a>
                     <dl class="layui-nav-child" ng-repeat="data in menu.list">
                         <dd><a href="{{'#!'+data.url}}">{{data.name}}</a></dd>
                     </dl>
@@ -52,7 +60,7 @@
 
     <div class="layui-body">
         <!-- 内容主体区域 -->
-        <div style="padding: 15px;" ng-view></div>
+        <div style="padding: 15px;" ng-view ng-init="test()"></div>
     </div>
 
     <div class="layui-footer" style="text-align: center">
