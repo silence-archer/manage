@@ -115,7 +115,7 @@ app.controller('parentController', function ($scope, $http, $route, dataService,
             setTimeout(function () {
                     element.render('nav', 'test');
                 },
-                1000
+                500
             );
 
         });

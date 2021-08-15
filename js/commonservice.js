@@ -16,3 +16,7 @@ document.write("<script language=javascript src='robot/logConfig/logConfig.js'><
 document.write("<script language=javascript src='robot/logFile/logFile.js'></script>");
 document.write("<script language=javascript src='robot/dataDict/dataDict.js'></script>");
 document.write("<script language=javascript src='robot/loan/loan.js'></script>");
+document.write("<script language=javascript src='robot/databaseInfo/databaseInfo.js'></script>");
+document.write("<script language=javascript src='robot/diff/diff.js'></script>");
+document.write("<script language=javascript src='robot/diff/diffDetail/diffDetail.js'></script>");
+document.write("<script language=javascript src='robot/fileRead/fileRead.js'></script>");

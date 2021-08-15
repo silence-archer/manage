@@ -1,9 +1,10 @@
 app.controller('dataDictController',function ($scope, $http, dataService,dialogService) {
     var baseUrl = dataService.getUrlData();
-    layui.use(['layer', 'form','table'], function(){
+    layui.use(['layer', 'form','table','upload'], function(){
         var table = layui.table,
             form = layui.form,
             layer = layui.layer,
+            upload = layui.upload,
             $=layui.jquery;
 
         table.render({
@@ -20,22 +21,47 @@ app.controller('dataDictController',function ($scope, $http, dataService,dialogS
                 ,{field:'desc', title:'数据字典描述', width:100}
                 ,{field:'enumName', title:'数据字典枚举值', width:150}
                 ,{field:'enumDesc', title:'数据字典枚举值描述', width:200}
+                ,{field:'remark', title:'备注', width:200}
                 ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:200}
             ]]
             ,page: true
         });
         $scope.search = function () {
+            if ($scope.name == null || $scope.name === "" || $scope.name === undefined) {
+                layer.msg("查询条件不能为空");
+            }else {
+                table.reload('test', {
+                    url: baseUrl+'getDataDictByName',
+                    where: {
+                        name : $scope.name,
+                    },
+                    page: {
+                        curr: 1 //重新从第 1 页开始
+                    }
+                });
+            }
 
-            table.reload('test', {
-                url: baseUrl+'getDataDictByName',
-                where: {
-                    name : $scope.name,
-                },
-                page: {
-                    curr: 1 //重新从第 1 页开始
-                }
-            });
         }
+        //创建一个上传组件
+        upload.render({
+            elem: '#upload'
+            ,url: baseUrl+'upload/uploadDataDict'
+            ,done: function(res) { //上传后的回调
+                console.log(res);
+                if (res.code !== 0) {
+                    layer.msg(res.msg)
+                }else {
+                    table.reload('test', {
+                        where: {
+                        },
+                        page: {
+                            curr: 1 //重新从第 1 页开始
+                        }
+                    }); //只重载数据
+                }
+            }
+            ,accept: 'file' //允许上传的文件类型
+        })
 
         //监听头工具栏事件
         table.on('toolbar(test)', function(obj){
@@ -73,7 +99,8 @@ app.controller('dataDictController',function ($scope, $http, dataService,dialogS
                                     'name': data[0].name,
                                     'desc': data[0].desc,
                                     'enumName': data[0].enumName,
-                                    'enumDesc': data[0].enumDesc
+                                    'enumDesc': data[0].enumDesc,
+                                    'remark': data[0].remark
                                 });
 
                             }
@@ -84,6 +111,7 @@ app.controller('dataDictController',function ($scope, $http, dataService,dialogS
                         data[0].desc = info.field.desc;
                         data[0].enumName = info.field.enumName;
                         data[0].enumDesc = info.field.enumDesc;
+                        data[0].remark = info.field.remark;
                         dialogService.dialogHttp("updateDataDict",data[0]);
 
                         return false;//false：阻止表单跳转 true：表单跳转
@@ -121,7 +149,8 @@ app.controller('dataDictController',function ($scope, $http, dataService,dialogS
                             'name': data.name,
                             'desc': data.desc,
                             'enumName': data.enumName,
-                            'enumDesc': data.enumDesc
+                            'enumDesc': data.enumDesc,
+                            'remark': data.remark
                         });
                     }
                 });
@@ -130,6 +159,7 @@ app.controller('dataDictController',function ($scope, $http, dataService,dialogS
                     data.desc = info.field.desc;
                     data.enumName = info.field.enumName;
                     data.enumDesc = info.field.enumDesc;
+                    data.remark = info.field.remark;
                     dialogService.dialogHttp("updateDataDict",data);
 
                     return false;//false：阻止表单跳转 true：表单跳转

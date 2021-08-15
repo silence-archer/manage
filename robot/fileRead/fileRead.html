@@ -1,9 +1,9 @@
 <form class="layui-form" id="test1" lay-filter="test1">
     <div class="layui-form-item">
         <div class="layui-inline">
-            <label class="layui-form-label">名称</label>
+            <label class="layui-form-label">分隔符</label>
             <div class="layui-input-inline">
-                <input type="text" name="name" ng-model="name" placeholder="请输入数据字典名称" autocomplete="off" class="layui-input">
+                <input type="text" name="separator" ng-model="separator" placeholder="请输入分隔符" autocomplete="off" class="layui-input">
             </div>
             <button type="button" class="layui-btn" id="uploadHead">
                 <i class="layui-icon">&#xe67c;</i>上传文件模板
@@ -12,10 +12,8 @@
                 <i class="layui-icon">&#xe67c;</i>上传文件
             </button>
             <button type="reset" class="layui-btn layui-btn-primary" >重置</button>
-            <button class="layui-btn" ng-click="search()" >搜索</button>
+            <button class="layui-btn" ng-click="load()" >加载</button>
         </div>
-
-
     </div>
 </form>
 <table class="layui-hide" id="test" lay-filter="test"></table>

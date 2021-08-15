@@ -52,6 +52,18 @@ app.config(function ($httpProvider,$routeProvider){
     }).when('/loan',{
         templateUrl: 'robot/loan/loan.html',
         controller: 'loanController'
+    }).when('/diff',{
+        templateUrl: 'robot/diff/diff.html',
+        controller: 'diffController'
+    }).when('/diffDetail',{
+        templateUrl: 'robot/diff/diffDetail/diffDetail.html',
+        controller: 'diffDetailController'
+    }).when('/databaseInfo',{
+        templateUrl: 'robot/databaseInfo/databaseInfo.html',
+        controller: 'databaseInfoController'
+    }).when('/fileRead',{
+        templateUrl: 'robot/fileRead/fileRead.html',
+        controller: 'fileReadController'
     }).when('/',{
         templateUrl: 'robot/welcome/welcome.html',
         controller: 'welcomeController'

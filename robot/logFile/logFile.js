@@ -23,7 +23,7 @@ app.controller('logFileController',function ($scope, $http, dataService,dialogSe
             }
         });
 
-        dataDictService.getDataDictService("businessType");
+        dataDictService.getDataDictService("businessType", "businessType");
         form.render();
 
 
