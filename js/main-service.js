@@ -45,11 +45,23 @@ app.service('dialogService', function($http,$location,dataService,$route,$sce) {
         });
     };
 
-    this.delHttpService = function (url,msg,table,id){
+    this.delHttpService = function (url,msg){
         $http.get(dataService.getUrlData()+url).then(function successCallback(response) {
             if(response.data.code === 0){
                 layer.msg(msg);
                 // table.reload(id,true);
+            }else{
+                layer.msg(response.data.msg, {icon: 5});
+            }
+
+        }, function errorCallback(response) {
+            console.log(response);
+        });
+    };
+    this.postHttpService = function (url,data,msg){
+        $http.post(dataService.getUrlData()+url, data).then(function successCallback(response) {
+            if(response.data.code === 0){
+                layer.msg(msg);
             }else{
                 layer.msg(response.data.msg, {icon: 5});
             }

@@ -1,12 +1,20 @@
-app.controller('loanController', function ($scope, $http, dataService, dialogService) {
+app.controller('loanController', function ($scope, $http, dataService, dataDictService) {
     var baseUrl = dataService.getUrlData();
     layui.use(['layer', 'form', 'table'], function () {
         var table = layui.table,
             form = layui.form,
             layer = layui.layer,
             $ = layui.jquery;
-
-        form.render('select');
+        dataDictService.getDataDictService("ipOwner", "ipOwner");
+        dataDictService.getDataDictService("scene","scene");
+        dataDictService.getDataDictService("optionKw","optionKw");
+        dataDictService.getDataDictService("monthBasis","monthBasis");
+        dataDictService.getDataDictService("yearBasis","yearBasis");
+        dataDictService.getDataDictService("schedMode","schedMode");
+        dataDictService.getDataDictService("cycleFreq","cycleFreq");
+        dataDictService.getDataDictService("subSchedMode","subSchedMode");
+        dataDictService.getDataDictService("type","type");
+        form.render();
 
         table.render({
             elem: '#test'
@@ -92,9 +100,49 @@ app.controller('loanController', function ($scope, $http, dataService, dialogSer
             }
         });
         form.on('submit(formLoan)', function (info) {
-            console.log(info.field);
-            console.log(table.getData("test"));
+            const body = info.field;
+            body["formScheduleArray"] = table.getData("test");
+            console.log(body);
+            $http.post(baseUrl+"loan",{
+                apiCd: $('#ip').val()+"@/cl/inq/trial/schedule",
+                data: body
+            }).then(function successCallback(response) {
+                if(response.data.code === 0){
+                    layer.open({
+                        type: 1
+                        , title: '添加数据'
+                        , area: ['50%', '500px']
+                        , content: $("#dialog").html()//引用的弹出层的页面层的方式加载修改界面表单
+                        , success: function (layero, index) {
+                            form.render('select');
+                            table.render({
+                                elem: '#testResult'
+                                , title: '还款计划列表'
+                                , cols: [[
+                                    {field: 'priOutstanding', title: '本金余额', width: 250}
+                                    , {field: 'stageNo', title: '期次', width: 100}
+                                    , {field: 'days', title: '天数', width: 150}
+                                    , {field: 'amtType', title: '金额类型', width: 200}
+                                    , {field: 'nextDealDate', title: '下次处理日期', width: 200}
+                                    , {field: 'schedAmt', title: '计划金额', width: 200}
+                                    , {field: 'startDate', title: '起始日期', width: 200}
+                                    , {field: 'endDate', title: '终止日期', width: 200}
+                                ]],
+                                data: response.data.data.receiptArray
+                            });
+                            form.val('example', {
+                                'reference': response.data.serialNumber,
+                                'type': response.data.type
+                            });
+                        }
+                    });
+                }else{
+                    layer.msg(response.data.msg, {icon: 5});
+                }
 
+            }, function errorCallback(response) {
+                console.log(response);
+            });
         });
     });
 });

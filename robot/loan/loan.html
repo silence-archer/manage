@@ -1,20 +1,50 @@
-<form class="layui-form" id="test1" lay-filter="test1">
-    <div class="layui-form-item">
-        <div class="layui-inline">
-            <label class="layui-form-label">ip地址:</label>
-            <div class="layui-input-inline">
-                <select name="ip" id="ip" lay-filter="test" lay-verify="required"></select>
+<fieldset class="layui-elem-field">
+    <legend>调用地址</legend>
+    <div class="layui-field-box">
+        <form class="layui-form">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">ip地址:</label>
+                    <div class="layui-input-inline">
+                        <select name="ipOwner" id="ipOwner" lay-filter="test" lay-verify="required"></select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">场景:</label>
+                    <div class="layui-input-inline">
+                        <select name="scene" id="scene" lay-filter="test" lay-verify="required"></select>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="layui-inline">
-            <label class="layui-form-label">场景:</label>
-            <div class="layui-input-inline">
-                <select name="scene" id="scene" lay-filter="test" lay-verify="required"></select>
-            </div>
-        </div>
+        </form>
     </div>
+</fieldset>
+<fieldset class="layui-elem-field">
+    <legend>系统头信息</legend>
+    <div class="layui-field-box">
+        <form class="layui-form">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">渠道类型:</label>
+                    <input type="text" name="sourceType" id="sourceType" lay-verify="required"
+                           style="width: 250px;" placeholder="请输入渠道类型"
+                           autocomplete="off"
+                           class="layui-input">
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">机构号:</label>
+                    <input type="text" name="branchId" id="branchId" lay-verify="required"
+                           style="width: 250px;" placeholder="请输入机构号"
+                           autocomplete="off"
+                           class="layui-input">
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
 
-
+<blockquote class="layui-elem-quote">主体信息</blockquote>
+<form class="layui-form" id="test1" lay-filter="test1">
     <div class="layui-form-item">
         <div class="layui-inline">
             <label class="layui-form-label">操作类型:</label>
@@ -139,7 +169,7 @@
                        class="layui-input">
             </div>
         </div>
-        <div class="layui-form-item layui-form-text">
+        <div class="layui-form-item">
             <label class="layui-form-label">结束日期</label>
             <div class="layui-input-inline" style="width: 250px;">
                 <input type="text" name="endDate" id="endDate" lay-verify="required" placeholder="请输入结束日期"
@@ -155,6 +185,29 @@
             </div>
         </div>
     </form>
+</div>
+
+<div class="layui-row" id="dialogResult" style="display:none;">
+    <br/>
+    <form class="layui-form" lay-filter="example">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">交易参考号</label>
+                <input type="text" name="reference" id="reference" disabled
+                       style="width: 250px;"
+                       autocomplete="off"
+                       class="layui-input">
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">交易类型:</label>
+                <div class="layui-input-inline">
+                    <select name="type" id="type" lay-filter="test" disabled></select>
+                </div>
+            </div>
+        </div>
+        <table class="layui-hide" id="testResult" lay-filter="test"></table>
+    </form>
+
 </div>
 
 <script type="text/html" id="barDemo">

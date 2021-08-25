@@ -3,7 +3,8 @@
         <div class="layui-inline">
             <label class="layui-form-label">分隔符</label>
             <div class="layui-input-inline">
-                <input type="text" name="separator" ng-model="separator" placeholder="请输入分隔符" autocomplete="off" class="layui-input">
+                <input type="text" name="separator" ng-model="separator" placeholder="请输入分隔符" autocomplete="off"
+                       class="layui-input">
             </div>
             <button type="button" class="layui-btn" id="uploadHead">
                 <i class="layui-icon">&#xe67c;</i>上传文件模板
@@ -11,68 +12,29 @@
             <button type="button" class="layui-btn" id="uploadBody">
                 <i class="layui-icon">&#xe67c;</i>上传文件
             </button>
-            <button type="reset" class="layui-btn layui-btn-primary" >重置</button>
-            <button class="layui-btn" ng-click="load()" >加载</button>
+        </div>
+
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">查询条件名称</label>
+            <div class="layui-input-inline">
+                <input type="text" name="queryName" ng-model="queryName" placeholder="请输入查询名称" autocomplete="off"
+                       class="layui-input">
+            </div>
+            <div class="layui-input-inline">
+                <input type="text" name="queryValue" ng-model="queryValue" placeholder="请输入查询值" autocomplete="off"
+                       class="layui-input">
+            </div>
+            <button class="layui-btn" ng-click="search()">查询</button>
+            <button class="layui-btn" ng-click="downloadFile()">下载</button>
         </div>
     </div>
 </form>
-<table class="layui-hide" id="test" lay-filter="test"></table>
-<div class="layui-row" id="dialog" style="display:none;">
-    <br/>
-    <form class="layui-form" lay-filter="example">
-
-        <div class="layui-form-item">
-            <label class="layui-form-label">数据字典名称</label>
-            <div class="layui-input-inline" style="width: 250px;">
-                <input type="text" name="name" id="name" lay-verify="required"
-                       placeholder="请输入数据字典名称"
-                       autocomplete="off"
-                       class="layui-input">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">数据字典描述</label>
-            <div class="layui-input-inline" style="width: 250px;">
-                <input type="text" name="desc" id="desc" lay-verify="required"
-                       placeholder="请输入数据字典描述"
-                       autocomplete="off"
-                       class="layui-input">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">数据字典枚举值</label>
-            <div class="layui-input-inline" style="width: 230px;">
-                <input type="text" name="enumName" id="enumName"
-                       placeholder="请输入数据字典枚举值"
-                       autocomplete="off"
-                       class="layui-input">
-            </div>
-        </div>
-        <div class="layui-form-item layui-form-text">
-            <label class="layui-form-label">数据字典枚举值描述</label>
-            <div class="layui-input-inline" style="width: 230px;">
-                <input type="text" name="enumDesc" id="enumDesc"
-                       placeholder="请输入数据字典枚举值描述"
-                       autocomplete="off"
-                       class="layui-input">
-            </div>
-        </div>
-        <div class="layui-form-item layui-form-text">
-            <label class="layui-form-label">备注</label>
-            <div class="layui-input-inline" style="width: 230px;">
-                <input type="text" name="remark" id="remark"
-                       placeholder="请输入备注"
-                       autocomplete="off"
-                       class="layui-input">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <div class="layui-input-block">
-                <button type="submit" class="layui-btn" lay-submit lay-filter="formDataDict" >提交</button>
-            </div>
-        </div>
-    </form>
+<div class="layui-progress layui-progress-big" lay-filter="demo" lay-showPercent="true">
+    <div class="layui-progress-bar" lay-percent="0%"></div>
 </div>
+<table class="layui-hide" id="test" lay-filter="test"></table>
 
 <script type="text/html" id="barDemo">
     <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
