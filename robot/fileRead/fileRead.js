@@ -2,7 +2,7 @@ app.controller('fileReadController', function ($scope, $http, dataService, dialo
     const baseUrl = dataService.getUrlData();
     layui.use(['layer', 'form', 'table', 'upload'], function () {
         const table = layui.table,
-            form = layui.form,
+            username = $scope.user.username,
             layer = layui.layer,
             upload = layui.upload,
             element = layui.element,
@@ -42,6 +42,7 @@ app.controller('fileReadController', function ($scope, $http, dataService, dialo
         upload.render({
             elem: '#uploadBody'
             , url: baseUrl + 'upload/uploadFileBody'
+            ,data : {username: username}
             , choose: function (obj) {
                 count = 0;
                 obj.preview(function (index, file, result) {
