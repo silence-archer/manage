@@ -2,7 +2,6 @@ app.controller('fileReadController', function ($scope, $http, dataService, dialo
     const baseUrl = dataService.getUrlData();
     layui.use(['layer', 'form', 'table', 'upload'], function () {
         const table = layui.table,
-            username = $scope.user.username,
             layer = layui.layer,
             upload = layui.upload,
             element = layui.element,
@@ -42,12 +41,15 @@ app.controller('fileReadController', function ($scope, $http, dataService, dialo
         upload.render({
             elem: '#uploadBody'
             , url: baseUrl + 'upload/uploadFileBody'
-            ,data : {username: username}
+            ,data : {username: function(){
+                    return $scope.user.username;
+                }}
             , choose: function (obj) {
                 count = 0;
                 obj.preview(function (index, file, result) {
                     count++;
                 });
+                dialogService.delHttpService('deleteFileBody?username='+$scope.user.username, $scope.user.username);
             }
             , progress: function (n, elem, res, index) {
                 var percent = n / count + '%' //获取进度百分比
@@ -93,15 +95,15 @@ app.controller('fileReadController', function ($scope, $http, dataService, dialo
                 $http.post(baseUrl+'updateFileBody?separator=' + $scope.separator, data).then(function successCallback(response) {
                     if(response.data.code === 0){
                         table.reload('test', {
-                            url: baseUrl + 'getFileBody?separator=' + $scope.separator,
+                            url: baseUrl + 'getFileBodyByCondition?separator=' + $scope.separator,
                             method: 'post',
                             contentType: 'application/json',
                             where: {
-                                data: cols
-                            },
-
-                            page: {
-                                curr: 1 //重新从第 1 页开始
+                                data: {
+                                    heads: cols,
+                                    queryName: $scope.queryName,
+                                    queryValue: $scope.queryValue
+                                }
                             }
                         }); //只重载数据
                     }else{
@@ -131,10 +133,6 @@ app.controller('fileReadController', function ($scope, $http, dataService, dialo
                                     contentType: 'application/json',
                                     where: {
                                         data: cols
-                                    },
-
-                                    page: {
-                                        curr: 1 //重新从第 1 页开始
                                     }
                                 }); //只重载数据
                             }else{
