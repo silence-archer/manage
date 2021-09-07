@@ -1,11 +1,11 @@
-app.controller('loanController', function ($scope, $http, dataService, dataDictService) {
+app.controller('loanController', function ($scope, $http, $location, dataService, dataDictService) {
     var baseUrl = dataService.getUrlData();
     layui.use(['layer', 'form', 'table'], function () {
         var table = layui.table,
             form = layui.form,
             layer = layui.layer,
             $ = layui.jquery;
-        dataDictService.getDataDictService("ipOwner", "ipOwner");
+        dataDictService.getUserListService("ipOwner");
         dataDictService.getDataDictService("scene","scene");
         dataDictService.getDataDictService("optionKw","optionKw");
         dataDictService.getDataDictService("monthBasis","monthBasis");
@@ -45,12 +45,11 @@ app.controller('loanController', function ($scope, $http, dataService, dataDictS
                     });
                     //动态向表传递赋值可以参看文章进行修改界面的更新前数据的显示，当然也是异步请求的要数据的修改数据的获取
                     form.on('submit(formScheduleArray)', function (data) {
-                        console.log(obj);
-                        console.log(data);
-                        obj.config.data.push(data.field);
                         form.render('select');
+                        let tableData = table.getData('test');
+                        tableData.push(data.field);
                         table.reload('test', {
-                            data: obj.config.data
+                            data: tableData
                         });
                         layer.closeAll();//关闭所有的弹出层
                         return false;//false：阻止表单跳转 true：表单跳转
@@ -65,8 +64,7 @@ app.controller('loanController', function ($scope, $http, dataService, dataDictS
 
         //监听行工具事件
         table.on('tool(test)', function (obj) {
-            var data = obj.data;
-            //console.log(obj)
+            const data = obj.data;
             if (obj.event === 'del') {
                 layer.confirm('真的删除行么', function (index) {
                     obj.del();
@@ -102,40 +100,16 @@ app.controller('loanController', function ($scope, $http, dataService, dataDictS
         form.on('submit(formLoan)', function (info) {
             const body = info.field;
             body["formScheduleArray"] = table.getData("test");
-            console.log(body);
             $http.post(baseUrl+"loan",{
-                apiCd: $('#ip').val()+"@/cl/inq/trial/schedule",
-                data: body
+                apiCd: $('#ipOwner').val()+":"+$('#port').val()+"/cl/inq/trial/schedule",
+                data: {'body':body,'sysHead':{
+                    'sourceType': $('#sourceType').val(),
+                    'branchId': $('#branchId').val()
+                    }}
             }).then(function successCallback(response) {
                 if(response.data.code === 0){
-                    layer.open({
-                        type: 1
-                        , title: '添加数据'
-                        , area: ['50%', '500px']
-                        , content: $("#dialog").html()//引用的弹出层的页面层的方式加载修改界面表单
-                        , success: function (layero, index) {
-                            form.render('select');
-                            table.render({
-                                elem: '#testResult'
-                                , title: '还款计划列表'
-                                , cols: [[
-                                    {field: 'priOutstanding', title: '本金余额', width: 250}
-                                    , {field: 'stageNo', title: '期次', width: 100}
-                                    , {field: 'days', title: '天数', width: 150}
-                                    , {field: 'amtType', title: '金额类型', width: 200}
-                                    , {field: 'nextDealDate', title: '下次处理日期', width: 200}
-                                    , {field: 'schedAmt', title: '计划金额', width: 200}
-                                    , {field: 'startDate', title: '起始日期', width: 200}
-                                    , {field: 'endDate', title: '终止日期', width: 200}
-                                ]],
-                                data: response.data.data.receiptArray
-                            });
-                            form.val('example', {
-                                'reference': response.data.serialNumber,
-                                'type': response.data.type
-                            });
-                        }
-                    });
+                    dataService.setData(response.data.data);
+                    $location.url("/loan/result");
                 }else{
                     layer.msg(response.data.msg, {icon: 5});
                 }

@@ -3,8 +3,7 @@
         <div class="layui-inline">
             <label class="layui-form-label">分隔符</label>
             <div class="layui-input-inline">
-                <input type="text" name="separator" ng-model="separator" placeholder="请输入分隔符" autocomplete="off"
-                       class="layui-input">
+                <select name="separator" id="separator" lay-filter="test" lay-verify="required"></select>
             </div>
             <button type="button" class="layui-btn" id="uploadHead">
                 <i class="layui-icon">&#xe67c;</i>上传文件模板
@@ -28,6 +27,20 @@
             </div>
             <button class="layui-btn" ng-click="search()">查询</button>
             <button class="layui-btn" ng-click="downloadFile()">下载</button>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">更新字段名称</label>
+            <div class="layui-input-inline">
+                <input type="text" name="updateName" ng-model="updateName" placeholder="请输入更新字段名称" autocomplete="off"
+                       class="layui-input">
+            </div>
+            <div class="layui-input-inline">
+                <input type="text" name="updateValue" ng-model="updateValue" placeholder="请输入更新字段值" autocomplete="off"
+                       class="layui-input">
+            </div>
+            <button class="layui-btn" ng-click="update()">更新</button>
         </div>
     </div>
 </form>

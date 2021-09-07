@@ -1,0 +1,30 @@
+<form class="layui-form" id="test1" lay-filter="test1">
+
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">本金余额:</label>
+            <input type="text" name="outstandingPriAmt" id="outstandingPriAmt" disabled style="width: 250px;"
+                   class="layui-input">
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">提前还款总额:</label>
+            <input type="text" name="schedTotalAmt" id="schedTotalAmt"
+                   style="width: 250px;" disabled
+                   class="layui-input">
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">逾期试算总额:</label>
+            <input type="text" name="yuqAmt" id="yuqAmt"
+                   style="width: 250px;" disabled
+                   class="layui-input">
+        </div>
+    </div>
+
+    <table class="layui-hide" id="test" lay-filter="test"></table>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn layui-btn-primary" ng-click="exit()">返回</button>
+        </div>
+    </div>
+</form>
+

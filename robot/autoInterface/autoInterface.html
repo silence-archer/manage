@@ -1,0 +1,55 @@
+<form class="layui-form" id="test1" lay-filter="test1">
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">交易码:</label>
+            <input type="text" name="tranCode" id="tranCode" lay-verify="required"
+                   style="width: 250px;" placeholder="请输入交易码"
+                   autocomplete="off"
+                   class="layui-input">
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">交易名称:</label>
+            <input type="text" name="tranName" id="tranName" lay-verify="required"
+                   style="width: 250px;" placeholder="请输入交易名称"
+                   autocomplete="off"
+                   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">端口:</label>
+            <input type="text" name="port" id="port" lay-verify="required"
+                   style="width: 250px;" placeholder="请输入端口"
+                   autocomplete="off"
+                   class="layui-input">
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">uri:</label>
+            <input type="text" name="uri" id="uri" lay-verify="required"
+                   style="width: 250px;" placeholder="请输入uri"
+                   autocomplete="off"
+                   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">接口入参</label>
+        <div class="layui-input-block">
+            <textarea name="interfaceInput" id="interfaceInput" lay-verify="required" placeholder="请输入接口入参" class="layui-textarea"></textarea>
+        </div>
+    </div>
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">接口出参</label>
+        <div class="layui-input-block">
+            <textarea name="interfaceOutput" id="interfaceOutput" lay-verify="required" placeholder="请输入接口出参" class="layui-textarea"></textarea>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button type="reset" class="layui-btn layui-btn-primary" >重置</button>
+            <button type="submit" class="layui-btn" lay-submit lay-filter="formAutoInterface">提交</button>
+        </div>
+    </div>
+</form>
+
+

@@ -109,13 +109,41 @@ app.service('dataService', function() {
 
 app.service('dataDictService', function($http, dataService) {
 
-    this.getDataDictService = function (name, elementId) {
+    this.getDataDictService = function (name, elementId, callBack) {
         //获取参数配置
         $http.get(dataService.getUrlData()+"getDataDictByName?name="+name).then(function successCallback(response) {
             if(response.data.code === 0){
                 const dictList = response.data.data;
+                const enumData = {};
                 layui.jquery.each(dictList,function (index, item) {
-                    layui.jquery("#"+elementId).append("<option value="+item.enumName+">"+item.enumDesc+"</option>");
+                    let enumName = item.enumName;
+                    let enumDesc = item.enumDesc;
+                    if (elementId != null) {
+                        layui.jquery("#"+elementId).append("<option value="+ enumName+">"+ enumDesc+"</option>");
+                    }
+                    enumData[enumName] = enumDesc;
+
+                });
+                layui.form.render("select");
+                if (callBack !== undefined) {
+                    callBack(enumData);
+                }
+            }else{
+                layer.msg(response.data.msg,{icon:5});
+            }
+        }, function errorCallback(response) {
+            console.log(response);
+        });
+
+    }
+
+    this.getUserListService = function (elementId) {
+        //获取参数配置
+        $http.get(dataService.getUrlData()+"getUserList").then(function successCallback(response) {
+            if(response.data.code === 0){
+                const dictList = response.data.data;
+                layui.jquery.each(dictList,function (index, item) {
+                    layui.jquery("#"+elementId).append("<option value="+item.ipAddr+">"+item.nickname+"</option>");
 
                 });
                 layui.form.render("select");

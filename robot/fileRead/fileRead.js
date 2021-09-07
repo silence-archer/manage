@@ -1,4 +1,4 @@
-app.controller('fileReadController', function ($scope, $http, dataService, dialogService) {
+app.controller('fileReadController', function ($scope, $http, dataService, dataDictService, dialogService) {
     const baseUrl = dataService.getUrlData();
     layui.use(['layer', 'form', 'table', 'upload'], function () {
         const table = layui.table,
@@ -6,8 +6,9 @@ app.controller('fileReadController', function ($scope, $http, dataService, dialo
             upload = layui.upload,
             element = layui.element,
             $ = layui.jquery;
-        //创建一个上传组件
+        dataDictService.getDataDictService("separator","separator");
         let cols = [];
+        //创建一个上传组件
         upload.render({
             elem: '#uploadHead'
             , url: baseUrl + 'upload/uploadFileHead'
@@ -62,11 +63,11 @@ app.controller('fileReadController', function ($scope, $http, dataService, dialo
                 }
             }
             , allDone: function (res) {
-                if ($scope.separator == null || $scope.separator === "" || $scope.separator === undefined) {
+                if ($('#separator').val() == null || $('#separator').val() === "" || $('#separator').val() === undefined) {
                     layer.msg("分隔符不能为空");
                 } else {
                     table.reload('test', {
-                        url: baseUrl + 'getFileBody?separator=' + $scope.separator,
+                        url: baseUrl + 'getFileBody?separator=' + $('#separator').val(),
                         method: 'post',
                         contentType: 'application/json',
                         where: {
@@ -89,13 +90,13 @@ app.controller('fileReadController', function ($scope, $http, dataService, dialo
                 'value': obj.value,
                 'heads': cols
             };
-            if ($scope.separator == null || $scope.separator === "" || $scope.separator === undefined) {
+            if ($('#separator').val() == null || $('#separator').val() === "" || $('#separator').val() === undefined) {
                 layer.msg("分隔符不能为空");
             } else {
-                $http.post(baseUrl+'updateFileBody?separator=' + $scope.separator, data).then(function successCallback(response) {
+                $http.post(baseUrl+'updateFileBody?separator=' + $('#separator').val(), data).then(function successCallback(response) {
                     if(response.data.code === 0){
                         table.reload('test', {
-                            url: baseUrl + 'getFileBodyByCondition?separator=' + $scope.separator,
+                            url: baseUrl + 'getFileBodyByCondition?separator=' + $('#separator').val(),
                             method: 'post',
                             contentType: 'application/json',
                             where: {
@@ -122,13 +123,13 @@ app.controller('fileReadController', function ($scope, $http, dataService, dialo
                 , data = checkStatus.data; //获取选中的数据
             switch (obj.event) {
                 case 'add':
-                    if ($scope.separator == null || $scope.separator === "" || $scope.separator === undefined) {
+                    if ($('#separator').val() == null || $('#separator').val() === "" || $('#separator').val() === undefined) {
                         layer.msg("分隔符不能为空");
                     } else {
-                        $http.post(baseUrl+'addFileBody?separator=' + $scope.separator, cols).then(function successCallback(response) {
+                        $http.post(baseUrl+'addFileBody?separator=' + $('#separator').val(), cols).then(function successCallback(response) {
                             if(response.data.code === 0){
                                 table.reload('test', {
-                                    url: baseUrl + 'getFileBody?separator=' + $scope.separator,
+                                    url: baseUrl + 'getFileBody?separator=' + $('#separator').val(),
                                     method: 'post',
                                     contentType: 'application/json',
                                     where: {
@@ -151,7 +152,7 @@ app.controller('fileReadController', function ($scope, $http, dataService, dialo
                         $http.post(baseUrl+'deleteFileBody', data).then(function successCallback(response) {
                             if(response.data.code === 0){
                                 table.reload('test', {
-                                    url: baseUrl + 'getFileBody?separator=' + $scope.separator,
+                                    url: baseUrl + 'getFileBody?separator=' + $('#separator').val(),
                                     method: 'post',
                                     contentType: 'application/json',
                                     where: {
@@ -178,7 +179,7 @@ app.controller('fileReadController', function ($scope, $http, dataService, dialo
         });
         $scope.search = function () {
             table.reload('test', {
-                url: baseUrl + 'getFileBodyByCondition?separator=' + $scope.separator,
+                url: baseUrl + 'getFileBodyByCondition?separator=' + $('#separator').val(),
                 method: 'post',
                 contentType: 'application/json',
                 where: {
@@ -192,6 +193,29 @@ app.controller('fileReadController', function ($scope, $http, dataService, dialo
                     curr: 1 //重新从第 1 页开始
                 }
             }); //只重载数据
+
+        }
+        $scope.update = function () {
+            const data = {
+                heads: cols,
+                queryName: $scope.queryName,
+                queryValue: $scope.queryValue,
+                updateName: $scope.updateName,
+                updateValue: $scope.updateValue
+            };
+            $http.post(baseUrl+'updateBatchFileBody?separator=' + $('#separator').val(), data).then(function successCallback(response) {
+                if(response.data.code === 0){
+                    layer.msg('更新成功');
+                    $scope.updateName = '';
+                    $scope.updateValue = '';
+                    $scope.search();
+                }else{
+                    layer.msg(response.data.msg, {icon: 5});
+                }
+
+            }, function errorCallback(response) {
+                console.log(response);
+            });
 
         }
         $scope.downloadFile = function () {

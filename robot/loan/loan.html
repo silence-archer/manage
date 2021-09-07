@@ -4,10 +4,17 @@
         <form class="layui-form">
             <div class="layui-form-item">
                 <div class="layui-inline">
-                    <label class="layui-form-label">ip地址:</label>
+                    <label class="layui-form-label">ip所有者:</label>
                     <div class="layui-input-inline">
                         <select name="ipOwner" id="ipOwner" lay-filter="test" lay-verify="required"></select>
                     </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">端口:</label>
+                    <input type="text" name="port" id="port" lay-verify="required"
+                           style="width: 250px;" placeholder="请输入端口"
+                           autocomplete="off"
+                           class="layui-input">
                 </div>
                 <div class="layui-inline">
                     <label class="layui-form-label">场景:</label>
@@ -49,19 +56,25 @@
         <div class="layui-inline">
             <label class="layui-form-label">操作类型:</label>
             <div class="layui-input-inline">
-                <select name="optionKw" id="optionKw" lay-filter="test" lay-verify="required"></select>
+                <select name="optionKw" id="optionKw" lay-filter="test" lay-verify="required">
+                    <option value="">请选择</option>
+                </select>
             </div>
         </div>
         <div class="layui-inline">
             <label class="layui-form-label">月基准:</label>
             <div class="layui-input-inline">
-                <select name="monthBasis" id="monthBasis" lay-filter="test" lay-verify="required"></select>
+                <select name="monthBasis" id="monthBasis" lay-filter="test" lay-verify="required">
+                    <option value="">请选择</option>
+                </select>
             </div>
         </div>
         <div class="layui-inline">
             <label class="layui-form-label">年基准:</label>
             <div class="layui-input-inline">
-                <select name="yearBasis" id="yearBasis" lay-filter="test" lay-verify="required"></select>
+                <select name="yearBasis" id="yearBasis" lay-filter="test" lay-verify="required">
+                    <option value="">请选择</option>
+                </select>
             </div>
         </div>
     </div>
@@ -106,7 +119,9 @@
         <div class="layui-inline">
             <label class="layui-form-label">还款方式:</label>
             <div class="layui-input-inline">
-                <select name="schedMode" id="schedMode" lay-filter="test" lay-verify="required"></select>
+                <select name="schedMode" id="schedMode" lay-filter="test" lay-verify="required">
+                    <option value="">请选择</option>
+                </select>
             </div>
         </div>
     </div>
@@ -114,7 +129,9 @@
         <div class="layui-inline">
             <label class="layui-form-label">结息频率:</label>
             <div class="layui-input-inline">
-                <select name="cycleFreq" id="cycleFreq" lay-filter="test" lay-verify="required"></select>
+                <select name="cycleFreq" id="cycleFreq" lay-filter="test" lay-verify="required">
+                    <option value="">请选择</option>
+                </select>
             </div>
         </div>
         <div class="layui-inline">
@@ -187,28 +204,7 @@
     </form>
 </div>
 
-<div class="layui-row" id="dialogResult" style="display:none;">
-    <br/>
-    <form class="layui-form" lay-filter="example">
-        <div class="layui-form-item">
-            <div class="layui-inline">
-                <label class="layui-form-label">交易参考号</label>
-                <input type="text" name="reference" id="reference" disabled
-                       style="width: 250px;"
-                       autocomplete="off"
-                       class="layui-input">
-            </div>
-            <div class="layui-inline">
-                <label class="layui-form-label">交易类型:</label>
-                <div class="layui-input-inline">
-                    <select name="type" id="type" lay-filter="test" disabled></select>
-                </div>
-            </div>
-        </div>
-        <table class="layui-hide" id="testResult" lay-filter="test"></table>
-    </form>
 
-</div>
 
 <script type="text/html" id="barDemo">
     <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
