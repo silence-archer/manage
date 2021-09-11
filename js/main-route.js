@@ -70,6 +70,12 @@ app.config(function ($httpProvider,$routeProvider){
     }).when('/autoInterface',{
         templateUrl: 'robot/autoInterface/autoInterface.html',
         controller: 'autoInterfaceController'
+    }).when('/interfaceScene',{
+        templateUrl: 'robot/interfaceScene/interfaceScene.html',
+        controller: 'interfaceSceneController'
+    }).when('/subscribeConfig',{
+        templateUrl: 'robot/subscribeConfig/subscribeConfig.html',
+        controller: 'subscribeConfigController'
     }).when('/',{
         templateUrl: 'robot/welcome/welcome.html',
         controller: 'welcomeController'

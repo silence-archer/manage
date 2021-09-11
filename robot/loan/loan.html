@@ -13,13 +13,15 @@
                     <label class="layui-form-label">端口:</label>
                     <input type="text" name="port" id="port" lay-verify="required"
                            style="width: 250px;" placeholder="请输入端口"
-                           autocomplete="off"
+                           autocomplete="off" value = "9030"
                            class="layui-input">
                 </div>
                 <div class="layui-inline">
                     <label class="layui-form-label">场景:</label>
                     <div class="layui-input-inline">
-                        <select name="scene" id="scene" lay-filter="test" lay-verify="required"></select>
+                        <select name="scene" id="scene" lay-filter="select1" lay-verify="required">
+                            <option value="">请选择</option></select>
+                        </select>
                     </div>
                 </div>
             </div>
@@ -29,7 +31,7 @@
 <fieldset class="layui-elem-field">
     <legend>系统头信息</legend>
     <div class="layui-field-box">
-        <form class="layui-form">
+        <form class="layui-form" id="testSys" lay-filter="testSys">
             <div class="layui-form-item">
                 <div class="layui-inline">
                     <label class="layui-form-label">渠道类型:</label>
@@ -42,6 +44,13 @@
                     <label class="layui-form-label">机构号:</label>
                     <input type="text" name="branchId" id="branchId" lay-verify="required"
                            style="width: 250px;" placeholder="请输入机构号"
+                           autocomplete="off"
+                           class="layui-input">
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">交易日期:</label>
+                    <input type="text" name="tranDate" id="tranDate" lay-verify="required"
+                           style="width: 250px;" placeholder="请输入交易日期"
                            autocomplete="off"
                            class="layui-input">
                 </div>

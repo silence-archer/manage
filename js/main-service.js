@@ -49,6 +49,7 @@ app.service('dialogService', function($http,$location,dataService,$route,$sce) {
         $http.get(dataService.getUrlData()+url).then(function successCallback(response) {
             if(response.data.code === 0){
                 layer.msg(msg);
+                $route.reload();
                 // table.reload(id,true);
             }else{
                 layer.msg(response.data.msg, {icon: 5});
@@ -135,6 +136,24 @@ app.service('dataDictService', function($http, dataService) {
             console.log(response);
         });
 
+    }
+
+    this.getSceneService = function (elementId, tranCode) {
+        //获取参数配置
+        $http.get(dataService.getUrlData()+"getSceneByTranCode?tranCode="+tranCode).then(function successCallback(response) {
+            if(response.data.code === 0){
+                const dictList = response.data.data;
+                layui.jquery.each(dictList,function (index, item) {
+                    layui.jquery("#"+elementId).append("<option value="+item.sceneId+">"+item.sceneDesc+"</option>");
+
+                });
+                layui.form.render("select");
+            }else{
+                layer.msg(response.data.msg,{icon:5});
+            }
+        }, function errorCallback(response) {
+            console.log(response);
+        });
     }
 
     this.getUserListService = function (elementId) {

@@ -6,7 +6,7 @@ app.controller('loanController', function ($scope, $http, $location, dataService
             layer = layui.layer,
             $ = layui.jquery;
         dataDictService.getUserListService("ipOwner");
-        dataDictService.getDataDictService("scene","scene");
+        dataDictService.getSceneService("scene","test");
         dataDictService.getDataDictService("optionKw","optionKw");
         dataDictService.getDataDictService("monthBasis","monthBasis");
         dataDictService.getDataDictService("yearBasis","yearBasis");
@@ -16,6 +16,22 @@ app.controller('loanController', function ($scope, $http, $location, dataService
         dataDictService.getDataDictService("type","type");
         form.render();
 
+        form.on('select(select1)', function(data){
+            $http.get(baseUrl+'getSceneBySceneId?sceneId='+data.value).then(function successCallback(response) {
+                if(response.data.code === 0){
+                    form.val('test1', response.data.data.body);
+                    form.val('testSys', response.data.data.sysHead);
+                    table.reload('test', {
+                        data: response.data.data.body.scheduleArray
+                    });
+                }else{
+                    layer.msg(response.data.msg, {icon: 5});
+                }
+
+            }, function errorCallback(response) {
+                console.log(response);
+            });
+        });
         table.render({
             elem: '#test'
             , title: '子借据列表'
@@ -99,7 +115,7 @@ app.controller('loanController', function ($scope, $http, $location, dataService
         });
         form.on('submit(formLoan)', function (info) {
             const body = info.field;
-            body["formScheduleArray"] = table.getData("test");
+            body["scheduleArray"] = table.getData("test");
             $http.post(baseUrl+"loan",{
                 apiCd: $('#ipOwner').val()+":"+$('#port').val()+"/cl/inq/trial/schedule",
                 data: {'body':body,'sysHead':{

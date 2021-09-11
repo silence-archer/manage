@@ -22,3 +22,5 @@ document.write("<script language=javascript src='robot/diff/diff.js'></script>")
 document.write("<script language=javascript src='robot/diff/diffDetail/diffDetail.js'></script>");
 document.write("<script language=javascript src='robot/fileRead/fileRead.js'></script>");
 document.write("<script language=javascript src='robot/autoInterface/autoInterface.js'></script>");
+document.write("<script language=javascript src='robot/interfaceScene/interfaceScene.js'></script>");
+document.write("<script language=javascript src='robot/subscribeConfig/subscribeConfig.js'></script>");
