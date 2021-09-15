@@ -117,7 +117,7 @@ app.controller('mockController',function ($scope, $http, dataService,dialogServi
                     if(data.length === 0){
                         layer.msg('请选择一行');
                     } else {
-                        dialogService.delHttpService('deleteMock?id='+data[0].id,'删除成功');
+                        dialogService.delHttpService('deleteMock?id='+data[0].id,'删除成功','test');
 
                     }
                     break;
@@ -131,7 +131,7 @@ app.controller('mockController',function ($scope, $http, dataService,dialogServi
             if(obj.event === 'del'){
                 layer.confirm('真的删除行么', function(index){
                     obj.del();
-                    dialogService.delHttpService('deleteMock?id='+data.id,'删除成功');
+                    dialogService.delHttpService('deleteMock?id='+data.id,'删除成功','test');
                     layer.close(index);
                 });
             } else if(obj.event === 'edit'){

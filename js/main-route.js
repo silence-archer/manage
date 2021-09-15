@@ -1,6 +1,7 @@
 app.config(function ($httpProvider,$routeProvider){
     //跨域session的唯一性保障
     $httpProvider.defaults.withCredentials = true;
+    $httpProvider.interceptors.push('authInterceptor');
     $routeProvider.when('/message',{
         templateUrl: 'robot/message/message.html',
         controller: 'messageController'

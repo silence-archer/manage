@@ -15,7 +15,6 @@ app.controller('loanController', function ($scope, $http, $location, dataService
         dataDictService.getDataDictService("subSchedMode","subSchedMode");
         dataDictService.getDataDictService("type","type");
         form.render();
-
         form.on('select(select1)', function(data){
             $http.get(baseUrl+'getSceneBySceneId?sceneId='+data.value).then(function successCallback(response) {
                 if(response.data.code === 0){
@@ -118,10 +117,7 @@ app.controller('loanController', function ($scope, $http, $location, dataService
             body["scheduleArray"] = table.getData("test");
             $http.post(baseUrl+"loan",{
                 apiCd: $('#ipOwner').val()+":"+$('#port').val()+"/cl/inq/trial/schedule",
-                data: {'body':body,'sysHead':{
-                    'sourceType': $('#sourceType').val(),
-                    'branchId': $('#branchId').val()
-                    }}
+                data: {'body':body,'sysHead':form.val("testSys")}
             }).then(function successCallback(response) {
                 if(response.data.code === 0){
                     dataService.setData(response.data.data);

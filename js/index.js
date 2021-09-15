@@ -77,6 +77,14 @@ app.controller('parentController', function ($scope, $http, $route, dataService,
 
                 } else {
                     $scope.user = response.data.data;
+                    layui.sessionData('token', {
+                        key: 'token',
+                        value: response.data.token
+                    });
+                    layui.sessionData('user', {
+                        key: 'user',
+                        value: response.data.data
+                    });
                     $http.get(myUrl + "getNavigationMenu").then(function successCallback(response) {
                         if (response.data.code !== 0) {
                             layer.msg(response.data.msg, {

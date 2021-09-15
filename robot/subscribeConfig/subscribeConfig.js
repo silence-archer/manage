@@ -90,7 +90,7 @@ app.controller('subscribeConfigController',function ($scope, $http, dataService,
                         $.each(data,function (index, item) {
                             ids.push(item.id);
                             if (index === data.length-1) {
-                                dialogService.delHttpService('deleteBatchSubscribeConfig?ids='+ids,'删除成功');
+                                dialogService.delHttpService('deleteBatchSubscribeConfig?ids='+ids,'删除成功', 'test');
                             }
                         });
                     }
@@ -105,7 +105,7 @@ app.controller('subscribeConfigController',function ($scope, $http, dataService,
             if(obj.event === 'del'){
                 layer.confirm('真的删除行么', function(index){
                     obj.del();
-                    dialogService.delHttpService('deleteSubscribeConfig?id='+data.id,'删除成功');
+                    dialogService.delHttpService('deleteSubscribeConfig?id='+data.id,'删除成功','test');
                     layer.close(index);
                 });
             } else if(obj.event === 'edit'){

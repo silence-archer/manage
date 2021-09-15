@@ -116,7 +116,7 @@ app.controller('logConfigController',function ($scope, $http, dataService,dialog
                     if(data.length === 0){
                         layer.msg('请选择一行');
                     } else {
-                        dialogService.delHttpService('deleteLogConfig?id='+data[0].id,'删除成功');
+                        dialogService.delHttpService('deleteLogConfig?id='+data[0].id,'删除成功','test');
 
                     }
                     break;
@@ -130,7 +130,7 @@ app.controller('logConfigController',function ($scope, $http, dataService,dialog
             if(obj.event === 'del'){
                 layer.confirm('真的删除行么', function(index){
                     obj.del();
-                    dialogService.delHttpService('deleteLogConfig?id='+data.id,'删除成功');
+                    dialogService.delHttpService('deleteLogConfig?id='+data.id,'删除成功','test');
                     layer.close(index);
                 });
             } else if(obj.event === 'edit'){

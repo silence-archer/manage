@@ -23,8 +23,6 @@ app.controller('userController',function ($scope, $http, dataService,dialogServi
         table.render({
             elem: '#test'
             ,url: baseUrl+'getUserInfo'
-            // ,crossDomain: true
-            // ,xhrFields: { withCredentials: true }
             ,toolbar: 'default' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
             ,title: '用户数据表'
             ,cols: [[
@@ -110,7 +108,7 @@ app.controller('userController',function ($scope, $http, dataService,dialogServi
                     if(data.length === 0){
                         layer.msg('请选择一行');
                     } else {
-                        dialogService.delHttpService('deleteUser?id='+data[0].id,'删除成功');
+                        dialogService.delHttpService('deleteUser?id='+data[0].id,'删除成功','test');
 
                     }
                     break;
@@ -124,7 +122,7 @@ app.controller('userController',function ($scope, $http, dataService,dialogServi
             if(obj.event === 'del'){
                 layer.confirm('真的删除行么', function(index){
                     obj.del();
-                    dialogService.delHttpService('deleteUser?id='+data.id,'删除成功');
+                    dialogService.delHttpService('deleteUser?id='+data.id,'删除成功','test');
                     layer.close(index);
                 });
             } else if(obj.event === 'edit'){

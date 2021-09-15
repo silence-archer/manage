@@ -54,7 +54,7 @@ app.controller('roleController',function ($scope, $http, dataService,dialogServi
                     if(data.length === 0){
                         layer.msg('请选择一行');
                     } else {
-                        dialogService.delHttpService('deleteRole?roleNo='+data[0].roleNo,'删除成功',table,'roleTest');
+                        dialogService.delHttpService('deleteRole?roleNo='+data[0].roleNo,'删除成功','roleTest');
                     }
                     break;
             };
@@ -67,7 +67,7 @@ app.controller('roleController',function ($scope, $http, dataService,dialogServi
             if(obj.event === 'del'){
                 layer.confirm('真的删除行么', function(index){
                     obj.del();
-                    dialogService.delHttpService('deleteRole?roleNo='+data.roleNo,'删除成功',table,'roleTest');
+                    dialogService.delHttpService('deleteRole?roleNo='+data.roleNo,'删除成功','roleTest');
                     layer.close(index);
                 });
             } else if(obj.event === 'edit'){

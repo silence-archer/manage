@@ -1,4 +1,4 @@
-app.service('dialogService', function($http,$location,dataService,$route,$sce) {
+app.service('dialogService', function($http,$location,dataService,$route) {
 
     this.dialogHttp = function (url,data) {
         $http.post(dataService.getUrlData()+url,data).then(function successCallback(response) {
@@ -6,6 +6,7 @@ app.service('dialogService', function($http,$location,dataService,$route,$sce) {
                 // layer.closeAll('loading');
                 // layer.load(2);
                 layer.msg("操作成功", {icon: 6});
+                
                 setTimeout(function () {
                         layer.closeAll();//关闭所有的弹出层
                         $route.reload();//刷新页面
@@ -27,6 +28,7 @@ app.service('dialogService', function($http,$location,dataService,$route,$sce) {
             if(response.data.code === 0){
                 // layer.closeAll('loading');
                 // layer.load(2);
+                
                 layer.msg("操作成功", {icon: 6});
                 setTimeout(function () {
                         layer.closeAll();
@@ -45,12 +47,13 @@ app.service('dialogService', function($http,$location,dataService,$route,$sce) {
         });
     };
 
-    this.delHttpService = function (url,msg){
+    this.delHttpService = function (url,msg, id){
         $http.get(dataService.getUrlData()+url).then(function successCallback(response) {
             if(response.data.code === 0){
                 layer.msg(msg);
-                $route.reload();
-                // table.reload(id,true);
+                if(id !== undefined && id !== null) {
+                    layui.table.reload(id);
+                }
             }else{
                 layer.msg(response.data.msg, {icon: 5});
             }
@@ -63,6 +66,7 @@ app.service('dialogService', function($http,$location,dataService,$route,$sce) {
         $http.post(dataService.getUrlData()+url, data).then(function successCallback(response) {
             if(response.data.code === 0){
                 layer.msg(msg);
+                
             }else{
                 layer.msg(response.data.msg, {icon: 5});
             }
@@ -85,9 +89,9 @@ app.service('dialogService', function($http,$location,dataService,$route,$sce) {
 
 });
 app.service('dataService', function() {
-    var data = null;
-    var urlData = null;
-    var othUrlData = null;
+    let data = null;
+    let urlData = null;
+    let othUrlData = null;
     this.setOthUrlData = function(o) {
         othUrlData = o;
     };
@@ -160,9 +164,14 @@ app.service('dataDictService', function($http, dataService) {
         //获取参数配置
         $http.get(dataService.getUrlData()+"getUserList").then(function successCallback(response) {
             if(response.data.code === 0){
+                
                 const dictList = response.data.data;
                 layui.jquery.each(dictList,function (index, item) {
                     layui.jquery("#"+elementId).append("<option value="+item.ipAddr+">"+item.nickname+"</option>");
+                    if (item.ipAddr === layui.sessionData('user').user.ipAddr) {
+                        layui.jquery("#"+elementId).append("<option value="+item.ipAddr+" selected>"+item.nickname+"</option>");
+                    }
+
 
                 });
                 layui.form.render("select");

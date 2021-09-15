@@ -73,7 +73,6 @@ app.controller('fileReadController', function ($scope, $http, dataService, dataD
                         where: {
                             data: cols
                         },
-
                         page: {
                             curr: 1 //重新从第 1 页开始
                         }

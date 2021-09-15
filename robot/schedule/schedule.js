@@ -94,7 +94,7 @@ app.controller('scheduleController',function ($scope, $http, dataService,dialogS
                     if(data.length === 0){
                         layer.msg('请选择一行');
                     } else {
-                        dialogService.delHttpService('deleteCronTask?jobName='+data[0].jobName,'删除成功');
+                        dialogService.delHttpService('deleteCronTask?jobName='+data[0].jobName,'删除成功','test');
 
                     }
                     break;
@@ -108,7 +108,7 @@ app.controller('scheduleController',function ($scope, $http, dataService,dialogS
             if(obj.event === 'del'){
                 layer.confirm('真的删除行么', function(index){
                     obj.del();
-                    dialogService.delHttpService('deleteCronTask?jobName='+data.jobName,'删除成功');
+                    dialogService.delHttpService('deleteCronTask?jobName='+data.jobName,'删除成功','test');
                     layer.close(index);
                 });
             } else if(obj.event === 'edit'){

@@ -121,7 +121,7 @@ app.controller('dataDictController',function ($scope, $http, dataService,dialogS
                     if(data.length === 0){
                         layer.msg('请选择一行');
                     } else {
-                        dialogService.delHttpService('deleteDataDict?id='+data[0].id,'删除成功');
+                        dialogService.delHttpService('deleteDataDict?id='+data[0].id,'删除成功', 'test');
 
                     }
                     break;
@@ -130,12 +130,12 @@ app.controller('dataDictController',function ($scope, $http, dataService,dialogS
 
         //监听行工具事件
         table.on('tool(test)', function(obj){
-            var data = obj.data;
+            const data = obj.data;
             //console.log(obj)
             if(obj.event === 'del'){
                 layer.confirm('真的删除行么', function(index){
                     obj.del();
-                    dialogService.delHttpService('deleteDataDict?id='+data.id,'删除成功');
+                    dialogService.delHttpService('deleteDataDict?id='+data.id,'删除成功', 'test');
                     layer.close(index);
                 });
             } else if(obj.event === 'edit'){

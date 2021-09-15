@@ -105,7 +105,7 @@ app.controller('interfaceSceneController',function ($scope, $http, dataService,d
                         $.each(data,function (index, item) {
                             ids.push(item.id);
                             if (index === data.length-1) {
-                                dialogService.delHttpService('deleteBatchInterfaceScene?ids='+ids,'删除成功');
+                                dialogService.delHttpService('deleteBatchInterfaceScene?ids='+ids,'删除成功','test');
                             }
                         });
                     }
@@ -120,7 +120,7 @@ app.controller('interfaceSceneController',function ($scope, $http, dataService,d
             if(obj.event === 'del'){
                 layer.confirm('真的删除行么', function(index){
                     obj.del();
-                    dialogService.delHttpService('deleteInterfaceScene?id='+data.id,'删除成功');
+                    dialogService.delHttpService('deleteInterfaceScene?id='+data.id,'删除成功','test');
                     layer.close(index);
                 });
             } else if(obj.event === 'edit'){

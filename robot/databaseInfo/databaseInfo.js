@@ -103,7 +103,7 @@ app.controller('databaseInfoController',function ($scope, $http, dataService,dia
                     if(data.length === 0){
                         layer.msg('请选择一行');
                     } else {
-                        dialogService.delHttpService('deleteDatabaseInfo?businessType='+data[0].businessType,'删除成功');
+                        dialogService.delHttpService('deleteDatabaseInfo?businessType='+data[0].businessType,'删除成功','test');
 
                     }
                     break;
@@ -117,7 +117,7 @@ app.controller('databaseInfoController',function ($scope, $http, dataService,dia
             if(obj.event === 'del'){
                 layer.confirm('真的删除行么', function(index){
                     obj.del();
-                    dialogService.delHttpService('deleteDatabaseInfo?businessType='+data.businessType,'删除成功');
+                    dialogService.delHttpService('deleteDatabaseInfo?businessType='+data.businessType,'删除成功','test');
                     layer.close(index);
                 });
             } else if(obj.event === 'edit'){
