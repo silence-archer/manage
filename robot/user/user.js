@@ -66,43 +66,15 @@ app.controller('userController',function ($scope, $http, dataService,dialogServi
                 case 'update':
                     if(data.length === 0){
                         layer.msg('请选择一行');
-                    } else if(data.length > 1){
-                        layer.msg('只能同时编辑一个');
                     } else {
-
-                        layer.open({
-                            type: 1
-                            ,title: '修改数据'
-                            ,area:['30%','400px']
-                            ,content: $('#dialog').html()//引用的弹出层的页面层的方式加载修改界面表单
-                            ,success: function(layero, index){
-                                form.val('example',{
-                                                'username': data[0].username,
-                                                'nickname': data[0].nickname,
-                                                'sign': data[0].sign,
-                                                'roleNo': data[0].roleNo,
-                                                'ipAddr': data[0].ipAddr,
-                                                'avatar': data[0].avatar
-                                            });
-                                $("#roleNo").find("option[value='"+data[0].roleNo+"']").attr('selected','selected');
-
-                                console.log($("#roleNo").html());
-                                form.render('select');
-
+                        const usernames = [];
+                        $.each(data,function (index, item) {
+                            usernames.push(item.username);
+                            if (index === data.length-1) {
+                                dialogService.delHttpService('resetPassword?usernames='+usernames,'密码重置成功', 'test');
                             }
                         });
                     }
-                    form.on('submit(formUser)', function (info) {
-                        data[0].username = info.field.username;
-                        data[0].nickname = info.field.nickname;
-                        data[0].sign = info.field.sign;
-                        data[0].avatar = info.field.avatar;
-                        data[0].roleNo = info.field.roleNo;
-                        data[0].ipAddr = info.field.ipAddr;
-                        dialogService.dialogHttp("updateUser",data[0]);
-
-                        return false;//false：阻止表单跳转 true：表单跳转
-                    });
                     break;
                 case 'delete':
                     if(data.length === 0){

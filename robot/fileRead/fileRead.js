@@ -37,7 +37,9 @@ app.controller('fileReadController', function ($scope, $http, dataService, dataD
             }
             , accept: 'file' //允许上传的文件类型
         })
-        let count = 0;
+        let loadingIndex;
+        let length;
+        let total;
         //创建一个上传组件
         upload.render({
             elem: '#uploadBody'
@@ -46,38 +48,57 @@ app.controller('fileReadController', function ($scope, $http, dataService, dataD
                     return $scope.user.username;
                 }}
             , choose: function (obj) {
-                count = 0;
-                obj.preview(function (index, file, result) {
-                    count++;
-                });
-                dialogService.delHttpService('deleteFileBody?username='+$scope.user.username, $scope.user.username);
+                this.files = obj.pushFile();
+                length = Object.keys(this.files).length;
+                total = Object.keys(this.files).length;
+                console.log(length);
+                loadingIndex = layer.load(1); //换了种风格
+                dialogService.delHttpService('deleteFileBody?fileSize='+total, $scope.user.username);
             }
             , progress: function (n, elem, res, index) {
-                var percent = n / count + '%' //获取进度百分比
-                element.progress('demo', percent); //可配合 layui 进度条元素使用
-                count--;
+                $http.get(baseUrl+'queryProgress', {params:{"fileSize": total}}).then(function successCallback(response) {
+                    if(response.data.code === 0){
+                        element.progress('demo', response.data.data);
+                    }else{
+                        layer.msg(response.data.msg, {icon: 5});
+                    }
+                }, function errorCallback(response) {
+                    console.log(response);
+                });
+
             }
-            , done: function (res) { //上传后的回调
+            , done: function (res, index) { //上传后的回调
                 if (res.code !== 0) {
-                    layer.msg(res.msg)
+                    layer.msg(res.msg);
+                }
+                length = Object.keys(this.files).length;
+                console.log('file size'+length);
+                delete this.files[index];
+                if (length === 1) {
+                    if ($('#separator').val() == null || $('#separator').val() === "" || $('#separator').val() === undefined) {
+                        layer.msg("分隔符不能为空");
+                    } else {
+                        table.reload('test', {
+                            url: baseUrl + 'getFileBody?separator=' + $('#separator').val(),
+                            method: 'post',
+                            contentType: 'application/json',
+                            where: {
+                                data: cols
+                            },
+                            page: {
+                                curr: 1 //重新从第 1 页开始
+                            },
+                            done: function () {
+                                console.log('close loading'+loadingIndex);
+                                layer.close(loadingIndex);
+                                element.progress('demo', '100%');
+                            }
+                        }); //只重载数据
+                    }
                 }
             }
-            , allDone: function (res) {
-                if ($('#separator').val() == null || $('#separator').val() === "" || $('#separator').val() === undefined) {
-                    layer.msg("分隔符不能为空");
-                } else {
-                    table.reload('test', {
-                        url: baseUrl + 'getFileBody?separator=' + $('#separator').val(),
-                        method: 'post',
-                        contentType: 'application/json',
-                        where: {
-                            data: cols
-                        },
-                        page: {
-                            curr: 1 //重新从第 1 页开始
-                        }
-                    }); //只重载数据
-                }
+            , allDone: function (obj) {
+                console.log(obj);
             }
             , accept: 'file' //允许上传的文件类型
             , multiple: true

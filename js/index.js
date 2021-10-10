@@ -1,11 +1,11 @@
-var app = angular.module('myApp', ['ngRoute']);
+const app = angular.module('myApp', ['ngRoute']);
 app.controller('parentController', function ($scope, $http, $route, dataService, dialogService) {
     $scope.getUser = function () {
         $scope.user = {};
         //获取参数配置
         $http.get('config.json').then(function successCallback(response) {
             console.log(response);
-            var urlData = response.data;
+            const urlData = response.data;
             dataService.setUrlData(urlData.baseUrl);
             dataService.setOthUrlData(urlData.otherUrl);
             getUserInfo(urlData.baseUrl);
@@ -29,7 +29,15 @@ app.controller('parentController', function ($scope, $http, $route, dataService,
     }
 
     $scope.quit = function () {
-        location.href = "login.html";
+        $http.get(dataService.getUrlData() + "logout").then(function successCallback(response) {
+            if(response.data.code !== 0) {
+                layer.msg(response.data.msg, {icon: 5});
+            }else {
+                location.href = "login.html";
+            }
+        }, function errorCallback(response) {
+            console.log(response);
+        });
     }
 
     $scope.modifyPassword = function () {
@@ -77,14 +85,7 @@ app.controller('parentController', function ($scope, $http, $route, dataService,
 
                 } else {
                     $scope.user = response.data.data;
-                    layui.sessionData('token', {
-                        key: 'token',
-                        value: response.data.token
-                    });
-                    layui.sessionData('user', {
-                        key: 'user',
-                        value: response.data.data
-                    });
+
                     $http.get(myUrl + "getNavigationMenu").then(function successCallback(response) {
                         if (response.data.code !== 0) {
                             layer.msg(response.data.msg, {

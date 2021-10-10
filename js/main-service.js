@@ -50,7 +50,10 @@ app.service('dialogService', function($http,$location,dataService,$route) {
     this.delHttpService = function (url,msg, id){
         $http.get(dataService.getUrlData()+url).then(function successCallback(response) {
             if(response.data.code === 0){
-                layer.msg(msg);
+                if(msg !== undefined && msg !== null) {
+                    layer.msg(msg);
+                }
+
                 if(id !== undefined && id !== null) {
                     layui.table.reload(id);
                 }

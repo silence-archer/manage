@@ -11,7 +11,8 @@ app.factory('authInterceptor', function(){
             return response;
         },
         response : function(response) {
-            let token = response.config.headers.token;
+            let token = response.headers('token');
+            console.log(token);
             if (token === undefined || token === null || token === '') {
                 return response;
             }

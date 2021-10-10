@@ -35,8 +35,16 @@ app.controller('loginController', function ($scope, $http) {
         $http.post(myUrl+"login",$scope.user,config).then(function successCallback(response) {
             console.log(response);
             if(response.data.code !== 0){
-                layer.msg(response.data.msg);
+                layer.msg(response.data.msg, {icon: 5});
             }else{
+                layui.sessionData('token', {
+                    key: 'token',
+                    value: response.data.token
+                });
+                layui.sessionData('user', {
+                    key: 'user',
+                    value: response.data.data
+                });
                 location.href="index.html";
             }
 
