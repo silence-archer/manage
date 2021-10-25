@@ -53,14 +53,12 @@ app.service('dialogService', function($http,$location,dataService,$route) {
                 if(msg !== undefined && msg !== null) {
                     layer.msg(msg);
                 }
-
-                if(id !== undefined && id !== null) {
-                    layui.table.reload(id);
-                }
             }else{
                 layer.msg(response.data.msg, {icon: 5});
             }
-
+            if(id !== undefined && id !== null) {
+                layui.table.reload(id);
+            }
         }, function errorCallback(response) {
             console.log(response);
         });
