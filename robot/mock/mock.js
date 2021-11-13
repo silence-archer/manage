@@ -29,6 +29,9 @@ app.controller('mockController',function ($scope, $http, dataService,dialogServi
                         if (d.mockModule === 'OB') {
                             return '公共';
                         }
+                        if (d.mockModule === 'ESB') {
+                            return 'ESB';
+                        }
                     }
                 }
 
