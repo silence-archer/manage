@@ -77,6 +77,9 @@ app.config(function ($httpProvider,$routeProvider){
     }).when('/subscribeConfig',{
         templateUrl: 'robot/subscribeConfig/subscribeConfig.html',
         controller: 'subscribeConfigController'
+    }).when('/dingClock',{
+        templateUrl: 'robot/dingClock/dingClock.html',
+        controller: 'dingClockController'
     }).when('/',{
         templateUrl: 'robot/welcome/welcome.html',
         controller: 'welcomeController'

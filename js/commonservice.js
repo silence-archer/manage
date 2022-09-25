@@ -24,3 +24,4 @@ document.write("<script language=javascript src='robot/fileRead/fileRead.js'></s
 document.write("<script language=javascript src='robot/autoInterface/autoInterface.js'></script>");
 document.write("<script language=javascript src='robot/interfaceScene/interfaceScene.js'></script>");
 document.write("<script language=javascript src='robot/subscribeConfig/subscribeConfig.js'></script>");
+document.write("<script language=javascript src='robot/dingClock/dingClock.js'></script>");

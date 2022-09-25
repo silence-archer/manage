@@ -1,0 +1,223 @@
+<form class="layui-form" id="test1" lay-filter="test1">
+
+
+  <div class="layui-form-item">
+    <div class="layui-inline">
+      <label class="layui-form-label">用户名:</label>
+      <div class="layui-input-inline">
+        <input type="text" name="username" id="url" ng-model="username" placeholder="请输入用户名" autocomplete="off"
+               class="layui-input">
+      </div>
+    </div>
+    <div class="layui-inline">
+      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+      <button class="layui-btn" ng-click="search()">搜索</button>
+    </div>
+  </div>
+
+</form>
+<table class="layui-hide" id="test" lay-filter="test"></table>
+<div class="layui-row" id="dialog" style="display:none;">
+  <br/>
+  <form class="layui-form" lay-filter="example">
+
+    <div class="layui-form-item">
+      <label class="layui-form-label">用户名</label>
+      <div class="layui-input-inline" style="width: 250px;">
+        <input type="text" name="username" id="username" lay-verify="required"
+               placeholder="请输入用户名"
+               autocomplete="off"
+               class="layui-input">
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">userId</label>
+      <div class="layui-input-inline" style="width: 250px;">
+        <input type="text" name="userId" id="userId" lay-verify="required"
+               placeholder="请输入userId"
+               autocomplete="off"
+               class="layui-input">
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">projectId</label>
+      <div class="layui-input-inline" style="width: 250px;">
+        <input type="text" name="projectId" id="projectId" lay-verify="required"
+               placeholder="请输入projectId"
+               autocomplete="off"
+               class="layui-input">
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">ruleId</label>
+      <div class="layui-input-inline" style="width: 250px;">
+        <input type="text" name="ruleId" id="ruleId" lay-verify="required"
+               placeholder="请输入ruleId"
+               autocomplete="off"
+               class="layui-input">
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">addrId</label>
+      <div class="layui-input-inline" style="width: 250px;">
+        <input type="text" name="addrId" id="addrId" lay-verify="required"
+               placeholder="请输入addrId"
+               autocomplete="off"
+               class="layui-input">
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">apprUserId</label>
+      <div class="layui-input-inline" style="width: 250px;">
+        <input type="text" name="apprUserId" id="apprUserId" lay-verify="required"
+               placeholder="请输入apprUserId"
+               autocomplete="off"
+               class="layui-input">
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">deptId</label>
+      <div class="layui-input-inline" style="width: 250px;">
+        <input type="text" name="deptId" id="deptId" lay-verify="required"
+               placeholder="请输入deptId"
+               autocomplete="off"
+               class="layui-input">
+      </div>
+    </div>
+
+    <div class="layui-form-item">
+      <label class="layui-form-label">workReportType</label>
+      <div class="layui-input-inline" style="width: 250px;">
+        <input type="text" name="workReportType" id="workReportType" lay-verify="required"
+               placeholder="请输入workReportType"
+               autocomplete="off"
+               class="layui-input">
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">longitude</label>
+      <div class="layui-input-inline" style="width: 250px;">
+        <input type="text" name="longitude" id="longitude" lay-verify="required"
+               placeholder="请输入longitude"
+               autocomplete="off"
+               class="layui-input">
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">latitude</label>
+      <div class="layui-input-inline" style="width: 250px;">
+        <input type="text" name="latitude" id="latitude" lay-verify="required"
+               placeholder="请输入userId"
+               autocomplete="off"
+               class="layui-input">
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">address</label>
+      <div class="layui-input-inline" style="width: 250px;">
+        <input type="text" name="address" id="address" lay-verify="required"
+               placeholder="请输入address"
+               autocomplete="off"
+               class="layui-input">
+      </div>
+    </div>
+
+    <div class="layui-form-item">
+      <label class="layui-form-label">imagePath</label>
+      <div class="layui-input-inline" style="width: 250px;">
+        <input type="text" name="imagePath" id="imagePath"
+               placeholder="请输入imagePath"
+               autocomplete="off"
+               class="layui-input">
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">atcity</label>
+      <div class="layui-input-inline" style="width: 250px;">
+        <input type="text" name="atcity" id="atcity" lay-verify="required"
+               placeholder="请输入atcity"
+               autocomplete="off"
+               class="layui-input">
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">pbflag</label>
+      <div class="layui-input-inline" style="width: 250px;">
+        <input type="text" name="pbflag" id="pbflag" lay-verify="required"
+               placeholder="请输入pbflag"
+               autocomplete="off"
+               class="layui-input">
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">beforeup</label>
+      <div class="layui-input-inline" style="width: 250px;">
+        <input type="text" name="beforeup" id="beforeup" lay-verify="required"
+               placeholder="请输入beforeup"
+               autocomplete="off"
+               class="layui-input">
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">itcode</label>
+      <div class="layui-input-inline" style="width: 250px;">
+        <input type="text" name="itcode" id="itcode" lay-verify="required"
+               placeholder="请输入itcode"
+               autocomplete="off"
+               class="layui-input">
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">sbuId</label>
+      <div class="layui-input-inline" style="width: 250px;">
+        <input type="text" name="sbuId" id="sbuId" lay-verify="required"
+               placeholder="请输入sbuId"
+               autocomplete="off"
+               class="layui-input">
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">openId</label>
+      <div class="layui-input-inline" style="width: 250px;">
+        <input type="text" name="openId" id="openId" lay-verify="required"
+               placeholder="请输入openId"
+               autocomplete="off"
+               class="layui-input">
+      </div>
+    </div>
+
+    <div class="layui-form-item">
+      <label class="layui-form-label">mailAddress</label>
+      <div class="layui-input-inline" style="width: 250px;">
+        <input type="text" name="mailAddress" id="mailAddress" lay-verify="required"
+               placeholder="请输入mailAddress"
+               autocomplete="off"
+               class="layui-input">
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">状态</label>
+      <div class="layui-input-inline" style="width: 230px;">
+        <select name="status" id="status" lay-filter="test" lay-verify="required">
+          <option value="">请选择</option>
+          <option value="Y">有效</option>
+          <option value="N">无效</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="layui-form-item">
+      <div class="layui-input-block">
+        <button type="submit" class="layui-btn" lay-submit lay-filter="formDingClock">提交</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<script type="text/html" id="barDemo">
+  <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">运行一次</a>
+  <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+
+
