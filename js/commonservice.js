@@ -25,3 +25,4 @@ document.write("<script language=javascript src='robot/autoInterface/autoInterfa
 document.write("<script language=javascript src='robot/interfaceScene/interfaceScene.js'></script>");
 document.write("<script language=javascript src='robot/subscribeConfig/subscribeConfig.js'></script>");
 document.write("<script language=javascript src='robot/dingClock/dingClock.js'></script>");
+document.write("<script language=javascript src='robot/scheduleLog/scheduleLog.js'></script>");

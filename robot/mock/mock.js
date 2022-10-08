@@ -38,6 +38,16 @@ app.controller('mockController',function ($scope, $http, dataService,dialogServi
                 ,{field:'mockName', title:'挡板名称', width:100}
                 ,{field:'mockInput', title:'挡板入参', width:150}
                 ,{field:'mockOutput', title:'挡板出参', width:200}
+                , {
+                    field: 'mockStatus', title: '挡板状态', width: 100, templet: function (d) {
+                        if (d.mockStatus === 'Y') {
+                            return '有效';
+                        }
+                        if (d.mockStatus === 'N') {
+                            return '无效';
+                        }
+                    }
+                }
                 ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:200}
             ]]
             ,page: true
@@ -98,6 +108,7 @@ app.controller('mockController',function ($scope, $http, dataService,dialogServi
                                                 'mockUrl': data[0].mockUrl,
                                                 'mockName': data[0].mockName,
                                                 'mockModule': data[0].mockModule,
+                                                'mockStatus': data[0].mockStatus,
                                                 'mockInput': data[0].mockInput,
                                                 'mockOutput': data[0].mockOutput
                                             });
@@ -109,6 +120,7 @@ app.controller('mockController',function ($scope, $http, dataService,dialogServi
                         data[0].mockUrl = info.field.mockUrl;
                         data[0].mockName = info.field.mockName;
                         data[0].mockModule = info.field.mockModule;
+                        data[0].mockStatus = info.field.mockStatus;
                         data[0].mockInput = info.field.mockInput;
                         data[0].mockOutput = info.field.mockOutput;
                         dialogService.dialogHttp("updateMock",data[0]);
@@ -148,6 +160,7 @@ app.controller('mockController',function ($scope, $http, dataService,dialogServi
                             'mockUrl': data.mockUrl,
                             'mockName': data.mockName,
                             'mockModule': data.mockModule,
+                            'mockStatus': data.mockStatus,
                             'mockInput': data.mockInput,
                             'mockOutput': data.mockOutput
                         });
@@ -156,6 +169,7 @@ app.controller('mockController',function ($scope, $http, dataService,dialogServi
                 form.on('submit(formMock)', function (info) {
                     data.mockUrl = info.field.mockUrl;
                     data.mockModule = info.field.mockModule;
+                    data.mockStatus = info.field.mockStatus;
                     data.mockName = info.field.mockName;
                     data.mockInput = info.field.mockInput;
                     data.mockOutput = info.field.mockOutput;

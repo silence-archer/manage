@@ -88,7 +88,16 @@
                 <textarea name="mockOutput" id="mockOutput" lay-verify="required" placeholder="请输入挡板出参" class="layui-textarea"></textarea>
             </div>
         </div>
-
+      <div class="layui-form-item">
+        <label class="layui-form-label">挡板状态</label>
+        <div class="layui-input-inline" style="width: 230px;">
+          <select name="mockStatus" id="mockStatus" lay-filter="test" lay-verify="required">
+            <option value="">请选择</option>
+            <option value="Y">有效</option>
+            <option value="N">无效</option>
+          </select>
+        </div>
+      </div>
         <div class="layui-form-item">
             <div class="layui-input-block">
                 <button type="submit" class="layui-btn" lay-submit lay-filter="formMock" >提交</button>
