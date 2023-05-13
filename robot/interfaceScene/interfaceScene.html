@@ -27,6 +27,15 @@
                        class="layui-input">
             </div>
         </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">交易描述</label>
+        <div class="layui-input-inline" style="width: 250px;">
+          <input type="text" name="tranDesc" id="tranDesc" lay-verify="required"
+                 placeholder="请输入交易码"
+                 autocomplete="off"
+                 class="layui-input">
+        </div>
+      </div>
         <div class="layui-form-item">
             <label class="layui-form-label">场景名称</label>
             <div class="layui-input-inline" style="width: 250px;">
@@ -36,6 +45,18 @@
                        class="layui-input">
             </div>
         </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">场景类型</label>
+        <div class="layui-input-inline" style="width: 230px;">
+          <select name="sceneType" id="sceneType" lay-filter="test" lay-verify="required">
+            <option value="">请选择</option>
+            <option value="OLTP_TYPE">交易接口类型</option>
+            <option value="BATCH_TYPE">批处理接口类型</option>
+            <option value="CHECK_TYPE">查证结果类型</option>
+            <option value="UPDATE_TYPE">更新数据类型</option>
+          </select>
+        </div>
+      </div>
         <div class="layui-form-item">
             <label class="layui-form-label">请求报文</label>
             <div class="layui-input-block">

@@ -148,10 +148,12 @@ app.service('dataDictService', function($http, dataService) {
         $http.get(dataService.getUrlData()+"getSceneByTranCode?tranCode="+tranCode).then(function successCallback(response) {
             if(response.data.code === 0){
                 const dictList = response.data.data;
+
+                layui.jquery("#"+elementId).html('<option value="">请选择</option>')
                 layui.jquery.each(dictList,function (index, item) {
                     layui.jquery("#"+elementId).append("<option value="+item.sceneId+">"+item.sceneDesc+"</option>");
-
                 });
+
                 layui.form.render("select");
             }else{
                 layer.msg(response.data.msg,{icon:5});

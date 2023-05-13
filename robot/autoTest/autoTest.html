@@ -1,0 +1,70 @@
+<form class="layui-form" id="test1" lay-filter="test1">
+  <div class="layui-form-item">
+    <div class="layui-inline">
+      <label class="layui-form-label">案例描述:</label>
+      <div class="layui-input-inline">
+        <input type="text" name="queryTestCaseDesc" id="queryTestCaseDesc" ng-model="queryTestCaseDesc" placeholder="请输入案例描述"
+               autocomplete="off" class="layui-input">
+      </div>
+    </div>
+    <div class="layui-inline">
+      <button type="reset" class="layui-btn layui-btn-primary" >重置</button>
+      <button class="layui-btn" ng-click="search()" >搜索</button>
+    </div>
+  </div>
+
+</form>
+<table class="layui-hide" id="test" lay-filter="test"></table>
+<div class="layui-row" id="dialog" style="display:none;">
+  <br/>
+  <form class="layui-form" lay-filter="example">
+    <div class="layui-form-item">
+      <label class="layui-form-label">自动化测试任务名称</label>
+      <div class="layui-input-inline" style="width: 250px;">
+        <select name="jobName" id="jobName" lay-filter="jobName" lay-verify="required">
+        </select>
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">测试案例描述</label>
+      <div class="layui-input-inline" style="width: 250px;">
+        <input type="text" name="testCaseDesc" id="testCaseDesc" lay-verify="required"
+               placeholder="请输入测试案例描述"
+               autocomplete="off"
+               class="layui-input">
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">排序</label>
+      <div class="layui-input-inline" style="width: 250px;">
+        <input type="text" name="sort" id="sort" lay-verify="required"
+               placeholder="请输入排序"
+               autocomplete="off"
+               class="layui-input">
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">循环次数</label>
+      <div class="layui-input-inline" style="width: 250px;">
+        <input type="text" name="loopNum" id="loopNum" lay-verify="required"
+               placeholder="请输入循环次数"
+               autocomplete="off"
+               class="layui-input">
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <div class="layui-input-block">
+        <button type="submit" class="layui-btn" lay-submit lay-filter="formAutoTest" >提交</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<script type="text/html" id="barDemo">
+  <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="run">运行</a>
+  <a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="detail">查看详情</a>
+  <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+
+

@@ -26,3 +26,6 @@ document.write("<script language=javascript src='robot/interfaceScene/interfaceS
 document.write("<script language=javascript src='robot/subscribeConfig/subscribeConfig.js'></script>");
 document.write("<script language=javascript src='robot/dingClock/dingClock.js'></script>");
 document.write("<script language=javascript src='robot/scheduleLog/scheduleLog.js'></script>");
+document.write("<script language=javascript src='robot/autoTest/autoTest.js'></script>");
+document.write("<script language=javascript src='robot/autoTestJob/autoTestJob.js'></script>");
+document.write("<script language=javascript src='robot/autoTest/autoTestDetail/autoTestDetail.js'></script>");

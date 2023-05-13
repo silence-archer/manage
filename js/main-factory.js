@@ -12,7 +12,7 @@ app.factory('authInterceptor', function(){
         },
         response : function(response) {
             let token = response.headers('token');
-            console.log(token);
+            
             if (token === undefined || token === null || token === '') {
                 return response;
             }

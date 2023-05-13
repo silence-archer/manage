@@ -80,6 +80,15 @@ app.config(function ($httpProvider,$routeProvider){
     }).when('/dingClock',{
         templateUrl: 'robot/dingClock/dingClock.html',
         controller: 'dingClockController'
+    }).when('/autoTest',{
+        templateUrl: 'robot/autoTest/autoTest.html',
+        controller: 'autoTestController'
+    }).when('/autoTestJob',{
+        templateUrl: 'robot/autoTestJob/autoTestJob.html',
+        controller: 'autoTestJobController'
+    }).when('/autoTestDetail',{
+        templateUrl: 'robot/autoTest/autoTestDetail/autoTestDetail.html',
+        controller: 'autoTestDetailController'
     }).when('/scheduleLog',{
         templateUrl: 'robot/scheduleLog/scheduleLog.html',
         controller: 'scheduleLogController'

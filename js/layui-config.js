@@ -6,7 +6,7 @@ layui.$.ajaxSetup({
 
     success:function(result,status,xhr){
         let token = xhr.getResponseHeader('token');
-        console.log(token);
+        
         if (token !== undefined && token !== null && token !== '') {
             layui.sessionData('token', {
                 key: 'token',
@@ -21,7 +21,7 @@ layui.$.ajaxSetup({
 
     complete:function(xhr,status){
         let token = xhr.getResponseHeader('token');
-        console.log(token);
+        
         if (token !== undefined && token !== null && token !== '') {
             layui.sessionData('token', {
                 key: 'token',

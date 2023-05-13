@@ -1,0 +1,71 @@
+<table class="layui-hide" id="test" lay-filter="test"></table>
+<div class="layui-row" id="dialog" style="display:none;">
+  <br/>
+  <form class="layui-form" lay-filter="example">
+
+    <div class="layui-form-item">
+      <label class="layui-form-label">接口场景</label>
+      <div class="layui-input-inline" style="width: 250px;">
+        <select name="sceneId" id="sceneId" lay-filter="sceneId" lay-verify="required">
+        </select>
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">交易码</label>
+      <div class="layui-input-inline" style="width: 250px;">
+        <select name="tranCode" id="tranCode" lay-filter="tranCode" lay-verify="required" disabled>
+        </select>
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">场景类型</label>
+      <div class="layui-input-inline" style="width: 230px;">
+        <select name="sceneType" id="sceneType" lay-filter="test" lay-verify="required" disabled>
+          <option value="">请选择</option>
+          <option value="OLTP_TYPE">交易接口类型</option>
+          <option value="BATCH_TYPE">批处理接口类型</option>
+          <option value="CHECK_TYPE">查证结果类型</option>
+          <option value="UPDATE_TYPE">更新数据类型</option>
+        </select>
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">业务类型</label>
+      <div class="layui-input-inline" style="width: 250px;">
+        <select name="businessType" id="businessType" lay-filter="businessType" lay-verify="required">
+        </select>
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">排序</label>
+      <div class="layui-input-inline" style="width: 250px;">
+        <input type="text" name="sort" id="sort" lay-verify="required"
+               placeholder="请输入排序"
+               autocomplete="off"
+               class="layui-input">
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">间隔时间</label>
+      <div class="layui-input-inline" style="width: 250px;">
+        <input type="text" name="delayTime" id="delayTime" lay-verify="required"
+               placeholder="请输入间隔时间"
+               autocomplete="off"
+               class="layui-input">
+      </div>
+    </div>
+
+    <div class="layui-form-item">
+      <div class="layui-input-block">
+        <button type="submit" class="layui-btn" lay-submit lay-filter="formAutoTestDetail" >提交</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<script type="text/html" id="barDemo">
+  <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+
+
