@@ -92,6 +92,18 @@ app.config(function ($httpProvider,$routeProvider){
     }).when('/scheduleLog',{
         templateUrl: 'robot/scheduleLog/scheduleLog.html',
         controller: 'scheduleLogController'
+    }).when('/businessInfo',{
+        templateUrl: 'robot/member/businessInfo/businessInfo.html',
+        controller: 'businessInfoController'
+    }).when('/merchantInfo',{
+        templateUrl: 'robot/member/merchantInfo/merchantInfo.html',
+        controller: 'merchantInfoController'
+    }).when('/memberInfo',{
+        templateUrl: 'robot/member/memberInfo/memberInfo.html',
+        controller: 'memberInfoController'
+    }).when('/memberTransDetail',{
+        templateUrl: 'robot/member/memberTransDetail/memberTransDetail.html',
+        controller: 'memberTransDetailController'
     }).when('/',{
         templateUrl: 'robot/welcome/welcome.html',
         controller: 'welcomeController'

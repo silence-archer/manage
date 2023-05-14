@@ -1,0 +1,138 @@
+<form class="layui-form" id="test1" lay-filter="test1">
+  <div class="layui-form-item">
+    <div class="layui-inline">
+      <label class="layui-form-label">会员姓名</label>
+      <div class="layui-input-inline">
+        <input type="text" name="queryMemberDesc" ng-model="queryMemberDesc" placeholder="请输入会员姓名"
+               autocomplete="off" class="layui-input">
+      </div>
+      <label class="layui-form-label">会员手机号</label>
+      <div class="layui-input-inline">
+        <input type="text" name="queryMemberPhone" ng-model="queryMemberPhone" placeholder="请输入会员手机号"
+               autocomplete="off" class="layui-input">
+      </div>
+      <button type="reset" class="layui-btn layui-btn-primary" >重置</button>
+      <button class="layui-btn" ng-click="search()" >搜索</button>
+    </div>
+  </div>
+</form>
+<table class="layui-hide" id="test" lay-filter="test"></table>
+<div class="layui-row" id="dialog" style="display:none;">
+  <br/>
+  <form class="layui-form" lay-filter="example">
+
+    <div class="layui-form-item">
+      <label class="layui-form-label">会员姓名</label>
+      <div class="layui-input-inline" style="width: 250px;">
+        <input type="text" name="memberDesc" id="memberDesc" lay-verify="required"
+               placeholder="请输入会员姓名"
+               autocomplete="off"
+               class="layui-input">
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">商户名称</label>
+      <div class="layui-input-inline" style="width: 250px;">
+        <select name="merchantName" id="merchantName" lay-filter="test" lay-verify="required">
+        </select>
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">会员电话</label>
+      <div class="layui-input-inline" style="width: 250px;">
+        <input type="text" name="memberPhone" id="memberPhone" lay-verify="required"
+               placeholder="请输入会员电话"
+               autocomplete="off"
+               class="layui-input">
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">会员地址</label>
+      <div class="layui-input-inline" style="width: 250px;">
+        <input type="text" name="memberAddress" id="memberAddress"
+               placeholder="请输入会员地址"
+               autocomplete="off"
+               class="layui-input">
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">备注</label>
+      <div class="layui-input-inline" style="width: 250px;">
+        <input type="text" name="remark" id="remark"
+               placeholder="请输入备注"
+               autocomplete="off"
+               class="layui-input">
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <div class="layui-input-block">
+        <button type="submit" class="layui-btn" lay-submit lay-filter="formMemberInfo">提交</button>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="layui-row" id="transDialog" style="display:none;">
+  <br/>
+  <form class="layui-form" lay-filter="example">
+
+    <div class="layui-form-item">
+      <label class="layui-form-label">会员名称</label>
+      <div class="layui-input-inline" style="width: 250px;">
+        <input type="text" name="transMemberName" id="transMemberName" disabled
+               placeholder="请输入会员名称"
+               autocomplete="off"
+               class="layui-input">
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">会员姓名</label>
+      <div class="layui-input-inline" style="width: 250px;">
+        <input type="text" name="transMemberDesc" id="transMemberDesc" disabled
+               placeholder="请输入会员姓名"
+               autocomplete="off"
+               class="layui-input">
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">会员电话</label>
+      <div class="layui-input-inline" style="width: 250px;">
+        <input type="text" name="transMemberPhone" id="transMemberPhone" disabled
+               placeholder="请输入会员电话"
+               autocomplete="off"
+               class="layui-input">
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">交易金额</label>
+      <div class="layui-input-inline" style="width: 250px;">
+        <input type="text" name="transAmount" id="transAmount" lay-verify="required"
+               placeholder="请输入交易金额"
+               autocomplete="off"
+               class="layui-input">
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">备注</label>
+      <div class="layui-input-inline" style="width: 250px;">
+        <input type="text" name="transRemark" id="transRemark"
+               placeholder="请输入备注"
+               autocomplete="off"
+               class="layui-input">
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <div class="layui-input-block">
+        <button type="submit" class="layui-btn" lay-submit lay-filter="formTransMemberInfo">提交</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<script type="text/html" id="barDemo">
+  <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="input">充值</a>
+  <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="output">消费</a>
+  <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+
+

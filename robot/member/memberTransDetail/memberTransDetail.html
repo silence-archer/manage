@@ -1,0 +1,22 @@
+<form class="layui-form" id="test1" lay-filter="test1">
+  <div class="layui-form-item">
+    <div class="layui-inline">
+      <label class="layui-form-label">会员姓名</label>
+      <div class="layui-input-inline">
+        <input type="text" name="queryMemberDesc" ng-model="queryMemberDesc" placeholder="请输入会员姓名"
+               autocomplete="off" class="layui-input">
+      </div>
+      <label class="layui-form-label">会员手机号</label>
+      <div class="layui-input-inline">
+        <input type="text" name="queryMemberPhone" ng-model="queryMemberPhone" placeholder="请输入会员手机号"
+               autocomplete="off" class="layui-input">
+      </div>
+      <button type="reset" class="layui-btn layui-btn-primary" >重置</button>
+      <button class="layui-btn" ng-click="search()" >搜索</button>
+    </div>
+  </div>
+</form>
+<table class="layui-hide" id="test" lay-filter="test"></table>
+
+
+

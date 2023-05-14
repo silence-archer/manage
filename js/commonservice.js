@@ -29,3 +29,7 @@ document.write("<script language=javascript src='robot/scheduleLog/scheduleLog.j
 document.write("<script language=javascript src='robot/autoTest/autoTest.js'></script>");
 document.write("<script language=javascript src='robot/autoTestJob/autoTestJob.js'></script>");
 document.write("<script language=javascript src='robot/autoTest/autoTestDetail/autoTestDetail.js'></script>");
+document.write("<script language=javascript src='robot/member/businessInfo/businessInfo.js'></script>");
+document.write("<script language=javascript src='robot/member/merchantInfo/merchantInfo.js'></script>");
+document.write("<script language=javascript src='robot/member/memberInfo/memberInfo.js'></script>");
+document.write("<script language=javascript src='robot/member/memberTransDetail/memberTransDetail.js'></script>");

@@ -6,7 +6,7 @@ app.controller('loanController', function ($scope, $http, $location, dataService
             layer = layui.layer,
             $ = layui.jquery;
         dataDictService.getUserListService("ipOwner");
-        dataDictService.getSceneService("scene","/hsjry/asset/v1/capitalLoan/loan");
+        dataDictService.getSceneService("scene","/loan");
         dataDictService.getDataDictService("optionKw","optionKw");
         dataDictService.getDataDictService("monthBasis","monthBasis");
         dataDictService.getDataDictService("yearBasis","yearBasis");
